@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grit Landing Page Mockup v3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #2A2A2A;
+      --bg-soft: #303030;
+      --panel: #343434;
+      --panel-2: #2F2F2F;
+      --text: #F4F1EC;
+      --muted: #D7D2CB;
+      --subtle: #9A9A9A;
+      --line: rgba(244,241,236,0.09);
+      --line-strong: rgba(244,241,236,0.16);
+      --ember: #C74E0E;
+      --ember-strong: #E56A20;
+      --ember-soft: rgba(199,78,14,0.16);
+      --shadow: 0 20px 60px rgba(0,0,0,0.30);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(199,78,14,0.12), transparent 30%),
+        radial-gradient(circle at 85% 18%, rgba(229,106,32,0.08), transparent 22%),
+        linear-gradient(180deg, #2A2A2A 0%, #262626 100%);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(calc(100% - 48px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: rgba(42, 42, 42, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--ember) 0%, var(--ember-strong) 100%);
+      display: grid;
+      place-items: center;
+      color: #111;
+      box-shadow: 0 10px 25px rgba(199,78,14,0.28);
+      font-size: 0.95rem;
+      font-weight: 900;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .brand-text small {
+      font-size: 0.64rem;
+      letter-spacing: 0.22em;
+      color: var(--subtle);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .brand-text span {
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      transition: 180ms ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--ember);
+      color: var(--text);
+      box-shadow: 0 14px 30px rgba(199,78,14,0.22);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      background: var(--ember-strong);
+      box-shadow: 0 18px 32px rgba(199,78,14,0.28);
+    }
+
+    .btn-secondary {
+      border-color: var(--line-strong);
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(244,241,236,0.22);
+    }
+
+    .btn-cta-light {
+      background: rgba(244,241,236,0.10);
+      color: var(--bone);
+      border: 1px solid rgba(244,241,236,0.18);
+      box-shadow: none;
+    }
+
+    .btn-cta-light:hover {
+      background: rgba(244,241,236,0.16);
+      border-color: rgba(244,241,236,0.28);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      padding: 72px 0 54px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--line-strong);
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--ember);
+      box-shadow: 0 0 0 7px var(--ember-soft);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 5.5vw, 4.85rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      max-width: 11.5ch;
+    }
+
+    .hero h1 .accent {
+      color: #ffffff;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .hero h1 .accent::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0.08em;
+      height: 0.24em;
+      background: var(--ember-soft);
+      z-index: -1;
+      border-radius: 999px;
+    }
+
+    .subheadline {
+      margin: 22px 0 0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.13rem;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .hero-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 20px;
+      color: var(--subtle);
+      font-size: 0.94rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(55,55,55,0.96), rgba(44,44,44,0.98));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .window-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(244,241,236,0.16);
+    }
+
+    .window-title {
+      color: var(--subtle);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .dashboard {
+      padding: 22px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .dash-hero {
+      background: linear-gradient(135deg, rgba(66,66,66,0.98), rgba(52,52,52,0.98));
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 22px;
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .dash-hero h3 {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .dash-hero p {
+      margin: 0;
+      color: #f8efe7;
+      line-height: 1.55;
+      font-size: 0.98rem;
+    }
+
+    .chip-row, .stat-row, .feature-grid, .problem-grid, .difference-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .chip-row {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .chip {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(244,241,236,0.10);
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: var(--text);
+      font-size: 0.93rem;
+      font-weight: 600;
+    }
+
+    .stat-row {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.025);
+    }
+
+    .stat .label {
+      color: var(--subtle);
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .stat strong {
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .section {
+      padding: 36px 0;
+    }
+
+    .section-header {
+      display: grid;
+      gap: 14px;
+      max-width: 780px;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      color: var(--ember);
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      line-height: 1.72;
+      font-size: 1.05rem;
+    }
+
+    .problem-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.018));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .pain-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .pain-item {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: var(--muted);
+    }
+
+    .pain-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: var(--ember-soft);
+      color: var(--ember);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-top: 2px;
+    }
+
+    .quote-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(180deg, rgba(56,56,56,0.9), rgba(48,48,48,0.9));
+    }
+
+    .quote {
+      font-size: 1.5rem;
+      line-height: 1.35;
+      letter-spacing: -0.03em;
+      margin: 0 0 18px;
+    }
+
+    .quote-meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .feature-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .feature-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.018));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--ember-soft);
+      color: var(--ember);
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      letter-spacing: -0.03em;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .difference-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .difference-card {
+      padding: 24px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(54,54,54,0.92), rgba(45,45,45,0.92));
+      box-shadow: var(--shadow);
+    }
+
+    .difference-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .difference-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .cta-section {
+      padding: 38px 0 84px;
+    }
+
+    .cta-card {
+      padding: 34px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(229,106,32,0.10), transparent 22%),
+        linear-gradient(135deg, rgba(86,38,12,0.96), rgba(122,48,12,0.96));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .cta-card h2 {
+      max-width: 13ch;
+    }
+
+    .cta-card p {
+      color: #f7ebe2;
+      margin: 12px 0 0;
+      max-width: 58ch;
+      line-height: 1.65;
+    }
+
+    .footer {
+      padding: 0 0 38px;
+      color: var(--subtle);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .problem-grid,
+      .cta-card {
+        grid-template-columns: 1fr;
+      }
+
+      .difference-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-card h2 {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .chip-row,
+      .stat-row,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .panel,
+      .feature-card,
+      .difference-card,
+      .cta-card,
+      .dash-hero {
+        padding: 22px;
+      }
+
+      .dashboard {
+        padding: 16px;
+      }
+
+      h1 {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-mark">G</div>
+        <div class="brand-text">
+          <small>CHIROPRACTIC</small>
+          <span>GRIT</span>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#problem">The Problem</a>
+        <a href="#features">What Grit Includes</a>
+        <a href="#difference">Why Grit</a>
+        <a class="btn btn-primary" href="#waitlist">Join the Waitlist</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Built for chiropractors who bet on themselves
+          </div>
+
+          <h1>
+            A <span class="accent">modern EHR</span> built for the solo chiropractor
+          </h1>
+
+          <p class="subheadline">
+            Grit brings certainty, simplicity, and affordability to running your practice. Built specifically
+            for independent practices, it gives you the tools you actually need—without the cost or complexity
+            of traditional systems.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#waitlist">Join the Waitlist</a>
+            <a class="btn btn-secondary" href="#features">See What Grit Includes</a>
+          </div>
+
+          <div class="hero-note">
+            <span>Fast notes</span>
+            <span>Simple scheduling</span>
+            <span>Patient communication</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="window-top">
+            <div class="dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="window-title">Grit · Practice Dashboard</div>
+          </div>
+
+          <div class="dashboard">
+            <div class="dash-hero">
+              <h3>Everything you need. Nothing you don’t.</h3>
+              <p>
+                Notes, scheduling, reminders, and patient communication—built specifically for chiropractors,
+                not generic healthcare workflows.
+              </p>
+              <div class="chip-row">
+                <div class="chip">SOAP Notes</div>
+                <div class="chip">Patient Scheduling</div>
+                <div class="chip">Secure Messaging</div>
+              </div>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat">
+                <span class="label">Charting</span>
+                <strong>Fast SOAP flow</strong>
+              </div>
+              <div class="stat">
+                <span class="label">Operations</span>
+                <strong>Simple scheduling</strong>
+              </div>
+              <div class="stat">
+                <span class="label">Communication</span>
+                <strong>Texts + portal</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="problem">
+      <div class="container">
+        <div class="section-header">
+          <div class="kicker">The Problem</div>
+          <h2>Most EHRs weren’t built for solo chiropractors.</h2>
+          <div class="section-copy">
+            Large-clinic software tends to come with high costs, bloated workflows, and features independent
+            practices will never use. When you’re building a practice on your own, that kind of software doesn’t
+            just feel excessive—it gets in the way.
+          </div>
+        </div>
+
+        <div class="problem-grid">
+          <div class="panel">
+            <div class="pain-list">
+              <div class="pain-item">
+                <div class="pain-icon">1</div>
+                <div>
+                  <strong>Too much complexity.</strong><br>
+                  Traditional systems assume layers of staff, complicated workflows, and enterprise-style needs.
+                </div>
+              </div>
+              <div class="pain-item">
+                <div class="pain-icon">2</div>
+                <div>
+                  <strong>Too much cost.</strong><br>
+                  Small practices end up paying for features they don’t use and overhead they can’t justify.
+                </div>
+              </div>
+              <div class="pain-item">
+                <div class="pain-icon">3</div>
+                <div>
+                  <strong>Not built for chiropractic.</strong><br>
+                  Generic healthcare software rarely fits how chiropractors actually document and operate.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel quote-card">
+            <div>
+              <p class="quote">
+                “You shouldn’t need big-clinic software to build an independent practice.”
+              </p>
+            </div>
+            <div class="quote-meta">
+              Grit exists to bring clarity and confidence to chiropractors building something of their own.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <div class="kicker">What Grit Includes</div>
+          <h2>Everything you need. Nothing you don’t.</h2>
+          <div class="section-copy">
+            Grit is focused by design. Instead of throwing in every possible feature, it centers on the core tools
+            solo chiropractors actually need to run a practice well.
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h3>Simple, fast note taking</h3>
+            <p>SOAP notes designed specifically for chiropractors, so documentation feels clean, focused, and fast.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📅</div>
+            <h3>Easy scheduling</h3>
+            <p>Book, manage, and track appointments without complicated workflows or the overhead of large-clinic software.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>Patient communication</h3>
+            <p>Keep patients engaged with secure messaging and text reminders built into one streamlined system.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3>Patient portal</h3>
+            <p>Give patients access to forms, appointments, and communication in one modern, easy-to-use experience.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="difference">
+      <div class="container">
+        <div class="section-header">
+          <div class="kicker">Why Grit is Different</div>
+          <h2>Built differently—on purpose.</h2>
+          <div class="section-copy">
+            Grit wasn’t built to imitate traditional EHRs. It was built for a different kind of practice: lean,
+            independent, and intentional. That changes everything.
+          </div>
+        </div>
+
+        <div class="difference-grid">
+          <div class="difference-card">
+            <h3>Built for chiropractors</h3>
+            <p>Grit is designed around chiropractic workflows—not generic healthcare templates stretched to fit.</p>
+          </div>
+
+          <div class="difference-card">
+            <h3>Focused by design</h3>
+            <p>It removes unnecessary complexity so the software supports the practice instead of slowing it down.</p>
+          </div>
+
+          <div class="difference-card">
+            <h3>Affordable for independents</h3>
+            <p>Solo chiropractors shouldn’t have to pay enterprise prices just to run an efficient, modern practice.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="waitlist">
+      <div class="container">
+        <div class="cta-card">
+          <div>
+            <div class="kicker" style="color:#F4F1EC;">Get Early Access</div>
+            <h2>Start your practice with confidence.</h2>
+            <p>
+              Join the waitlist to be one of the first chiropractors to use Grit—a modern EHR built for certainty,
+              simplicity, and affordability.
+            </p>
+          </div>
+
+          <div>
+            <a class="btn btn-cta-light" href="#">Join the Waitlist</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Chiropractic Grit · Mockup using the original layout with your brand color palette
+    </div>
+  </footer>
+</body>
+</html>
