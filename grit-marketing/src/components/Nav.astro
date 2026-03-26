@@ -11,14 +11,48 @@
       </div>
     </a>
 
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="#problem">The Problem</a>
       <a href="#features">What Grit Includes</a>
       <a href="#difference">Why Grit</a>
       <a class="btn btn-primary" href="#waitlist">Join the Waitlist</a>
     </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <a href="#problem" class="mobile-link">The Problem</a>
+  <a href="#features" class="mobile-link">What Grit Includes</a>
+  <a href="#difference" class="mobile-link">Why Grit</a>
+  <a href="#waitlist" class="mobile-link mobile-cta">Join the Waitlist</a>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    hamburger.classList.toggle('active', isOpen);
+    mobileMenu?.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  mobileMenu?.querySelectorAll('.mobile-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger?.classList.remove('active');
+      hamburger?.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>
 
 <style>
   .nav {
@@ -112,9 +146,110 @@
     box-shadow: 0 12px 24px rgba(199, 78, 14, 0.28);
   }
 
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 10px;
+    transition: background 180ms ease;
+  }
+
+  .hamburger:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 220ms ease, opacity 180ms ease;
+    transform-origin: center;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 76px;
+    left: 0;
+    right: 0;
+    z-index: 39;
+    background: rgba(36, 36, 36, 0.97);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 0 20px;
+    flex-direction: column;
+    gap: 2px;
+    transform: translateY(-8px);
+    opacity: 0;
+    transition: transform 200ms ease, opacity 200ms ease;
+    pointer-events: none;
+  }
+
+  .mobile-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mobile-link {
+    display: block;
+    padding: 13px 24px;
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 150ms ease, background 150ms ease;
+    border-radius: 10px;
+    margin: 0 8px;
+  }
+
+  .mobile-link:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .mobile-cta {
+    color: var(--ember);
+    font-weight: 700;
+    margin-top: 8px;
+  }
+
+  .mobile-cta:hover {
+    color: var(--ember-strong);
+  }
+
   @media (max-width: 760px) {
     .nav-links {
       display: none;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+
+    .mobile-menu {
+      display: flex;
     }
   }
 </style>
