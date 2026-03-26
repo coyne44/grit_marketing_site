@@ -1,0 +1,103 @@
+---
+---
+
+<section class="cta-section" id="waitlist">
+  <div class="container">
+    <div class="cta-card">
+      <div>
+        <div class="kicker">Get Early Access</div>
+        <h2>Start your practice with confidence.</h2>
+        <p>
+          Join the waitlist to be one of the first chiropractors to use Grit—a modern EHR built for certainty,
+          simplicity, and affordability.
+        </p>
+      </div>
+
+      <div>
+        <a class="btn" href="#">Join the Waitlist</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    padding: 38px 0 84px;
+  }
+
+  .cta-card {
+    padding: 34px;
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(229, 106, 32, 0.10), transparent 22%),
+      linear-gradient(135deg, rgba(86, 38, 12, 0.96), rgba(122, 48, 12, 0.96));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 22px;
+    align-items: center;
+  }
+
+  .kicker {
+    color: #F4F1EC;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    max-width: 13ch;
+  }
+
+  p {
+    color: #f7ebe2;
+    margin: 12px 0 0;
+    max-width: 58ch;
+    line-height: 1.65;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 22px;
+    border-radius: 999px;
+    border: 1px solid rgba(244, 241, 236, 0.18);
+    background: rgba(244, 241, 236, 0.10);
+    color: #F4F1EC;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    transition: 180ms ease;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: rgba(244, 241, 236, 0.16);
+    border-color: rgba(244, 241, 236, 0.28);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 1040px) {
+    .cta-card {
+      grid-template-columns: 1fr;
+    }
+
+    h2 {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .cta-card {
+      padding: 22px;
+    }
+  }
+</style>

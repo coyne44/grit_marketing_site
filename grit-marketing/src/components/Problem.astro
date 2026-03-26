@@ -1,0 +1,161 @@
+---
+---
+
+<section class="section" id="problem">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">The Problem</div>
+      <h2>Most EHRs weren't built for solo chiropractors.</h2>
+      <p class="section-copy">
+        Large-clinic software tends to come with high costs, bloated workflows, and features independent
+        practices will never use. When you're building a practice on your own, that kind of software doesn't
+        just feel excessive—it gets in the way.
+      </p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="panel">
+        <div class="pain-list">
+          <div class="pain-item">
+            <div class="pain-icon">1</div>
+            <div>
+              <strong>Too much complexity.</strong><br />
+              Traditional systems assume layers of staff, complicated workflows, and enterprise-style needs.
+            </div>
+          </div>
+          <div class="pain-item">
+            <div class="pain-icon">2</div>
+            <div>
+              <strong>Too much cost.</strong><br />
+              Small practices end up paying for features they don't use and overhead they can't justify.
+            </div>
+          </div>
+          <div class="pain-item">
+            <div class="pain-icon">3</div>
+            <div>
+              <strong>Not built for chiropractic.</strong><br />
+              Generic healthcare software rarely fits how chiropractors actually document and operate.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel quote-card">
+        <p class="quote">
+          "You shouldn't need big-clinic software to build an independent practice."
+        </p>
+        <div class="quote-meta">
+          Grit exists to bring clarity and confidence to chiropractors building something of their own.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: 36px 0;
+  }
+
+  .section-header {
+    display: grid;
+    gap: 14px;
+    max-width: 780px;
+    margin-bottom: 28px;
+  }
+
+  .kicker {
+    color: var(--ember);
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .section-copy {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.72;
+    font-size: 1.05rem;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .panel {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.018));
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+
+  .pain-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .pain-item {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 12px;
+    align-items: start;
+    color: var(--muted);
+  }
+
+  .pain-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: var(--ember-soft);
+    color: var(--ember);
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .quote-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(180deg, rgba(56, 56, 56, 0.9), rgba(48, 48, 48, 0.9));
+  }
+
+  .quote {
+    font-size: 1.5rem;
+    line-height: 1.35;
+    letter-spacing: -0.03em;
+    margin: 0 0 18px;
+  }
+
+  .quote-meta {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1040px) {
+    .problem-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .panel {
+      padding: 22px;
+    }
+  }
+</style>
