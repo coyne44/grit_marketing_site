@@ -1,0 +1,278 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="SMS Terms & Privacy | Chiropractic Grit"
+  description="SMS messaging terms of service and privacy policy for appointment reminders and notifications sent through Grit on behalf of healthcare providers."
+>
+  <Nav />
+
+  <main class="page">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="page-header">
+        <div class="kicker">SMS Terms & Privacy</div>
+        <h1>SMS messaging terms.</h1>
+        <p class="header-copy">
+          Grit sends SMS messages on behalf of chiropractic practices for appointment reminders,
+          confirmations, and practice notifications. This page describes how SMS messaging works,
+          how consent is collected, and your rights.
+        </p>
+        <p class="last-updated">Last updated: March 30, 2026</p>
+      </div>
+
+      <!-- Content -->
+      <div class="legal-content">
+
+        <section>
+          <h2>1. What messages will I receive?</h2>
+          <p>
+            When you opt in to SMS notifications from your chiropractic practice, you may receive:
+          </p>
+          <ul>
+            <li>Appointment reminders (e.g., "Your appointment is tomorrow at 2:00 PM")</li>
+            <li>Appointment confirmations and scheduling updates</li>
+            <li>Practice notifications (e.g., office closures, schedule changes)</li>
+            <li>Balance and billing notifications</li>
+            <li>Replies to messages you send to the practice</li>
+          </ul>
+          <p>
+            Messages are sent on behalf of your healthcare provider's practice. Message frequency varies
+            based on your appointment schedule and practice communications. Typically 2-8 messages per month.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. How consent is collected</h2>
+          <p>
+            You will only receive SMS messages after providing your consent through one of the following methods:
+          </p>
+          <ul>
+            <li><strong>Patient portal</strong> — Opting in through your account settings or during registration</li>
+            <li><strong>In-office</strong> — Providing written or verbal consent at your practice</li>
+            <li><strong>Text reply</strong> — Replying YES or START to a consent request</li>
+          </ul>
+          <p>
+            Your consent is recorded with a timestamp and the method used. Consent is specific to the
+            practice you opted in with — opting in at one practice does not opt you in at another.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. How to opt out</h2>
+          <p>
+            You can stop receiving SMS messages at any time by:
+          </p>
+          <ul>
+            <li>Replying <strong>STOP</strong> to any message</li>
+            <li>Updating your preferences in your patient portal account</li>
+            <li>Contacting your practice directly</li>
+          </ul>
+          <p>
+            After opting out, you will receive a single confirmation message and no further texts will
+            be sent. You can opt back in at any time by replying <strong>START</strong> or through your
+            patient portal.
+          </p>
+          <p>
+            Opting out of SMS does not affect your ability to use the secure patient portal or receive
+            in-app messages from your provider.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Help</h2>
+          <p>
+            Reply <strong>HELP</strong> to any message for assistance. You can also contact your practice
+            directly or email us at <a href="mailto:support@gritcrm.com">support@gritcrm.com</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Message & data rates</h2>
+          <p>
+            Message and data rates may apply depending on your mobile carrier and plan. Grit does not
+            charge patients for SMS messages, but your carrier's standard messaging rates apply.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Privacy & PHI</h2>
+          <p>
+            SMS messages sent through Grit are limited to non-clinical content. We do not send
+            protected health information (PHI) such as diagnoses, test results, or treatment details
+            via text message. For private medical communications, your provider uses the secure
+            patient portal.
+          </p>
+          <p>
+            Your phone number is stored securely and is only used for practice communications
+            you have consented to. We do not sell, share, or use your phone number for marketing
+            purposes unrelated to your healthcare provider.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Supported carriers</h2>
+          <p>
+            SMS messaging is supported on all major US carriers including AT&T, T-Mobile, Verizon,
+            and Sprint, as well as most regional carriers. Carriers are not liable for delayed or
+            undelivered messages.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Changes to these terms</h2>
+          <p>
+            We may update these terms from time to time. Changes will be reflected on this page with
+            an updated date. Continued use of SMS services after changes constitutes acceptance of the
+            revised terms.
+          </p>
+        </section>
+
+        <section class="contact-section">
+          <h2>9. Contact</h2>
+          <p>
+            For questions about SMS messaging, privacy, or to request opt-out assistance:
+          </p>
+          <ul>
+            <li>Email: <a href="mailto:support@gritcrm.com">support@gritcrm.com</a></li>
+            <li>Or contact your practice directly</li>
+          </ul>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page {
+    padding: 52px 0 84px;
+  }
+
+  .page-header {
+    max-width: 700px;
+    margin-bottom: 52px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .kicker {
+    color: var(--ember);
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    margin: 0;
+  }
+
+  .header-copy {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 62ch;
+  }
+
+  .last-updated {
+    color: var(--subtle);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .legal-content {
+    max-width: 740px;
+  }
+
+  section {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  section:last-child {
+    border-bottom: none;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    letter-spacing: -0.03em;
+    margin: 0 0 16px;
+  }
+
+  p {
+    color: var(--muted);
+    font-size: 0.97rem;
+    line-height: 1.75;
+    margin: 0 0 14px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px;
+    display: grid;
+    gap: 10px;
+  }
+
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--ember);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  a {
+    color: var(--ember);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--ember-strong);
+  }
+
+  strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  @media (max-width: 600px) {
+    .page {
+      padding: 36px 0 64px;
+    }
+
+    section {
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+    }
+  }
+</style>
