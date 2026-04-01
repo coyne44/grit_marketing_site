@@ -1,0 +1,425 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Terms of Service | Chiropractic Grit"
+  description="Terms of service governing use of Chiropractic Grit's EHR, scheduling, patient portal, and SMS messaging platform."
+>
+  <Nav />
+
+  <main class="page">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="page-header">
+        <div class="kicker">Terms of Service</div>
+        <h1>Terms of service.</h1>
+        <p class="header-copy">
+          These terms govern your use of the Chiropractic Grit platform ("Grit"), including scheduling,
+          SOAP notes, patient portal, secure messaging, and SMS notifications. Please read them carefully.
+        </p>
+        <p class="last-updated">Last updated: March 31, 2026</p>
+      </div>
+
+      <!-- Content -->
+      <div class="legal-content">
+
+        <section>
+          <h2>1. Acceptance of terms</h2>
+          <p>
+            By creating an account or using any part of the Grit platform, you ("Provider," "Staff," or "User")
+            agree to be bound by these Terms of Service and our <a href="/sms-terms">SMS Terms &amp; Privacy Policy</a>.
+            If you are using Grit on behalf of a practice or organization, you represent that you have the
+            authority to bind that entity to these terms.
+          </p>
+          <p>
+            If you do not agree to these terms, do not create an account or use the platform.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Description of service</h2>
+          <p>
+            Chiropractic Grit is a cloud-based practice management platform designed for solo chiropractors
+            and independent chiropractic practices. The platform includes:
+          </p>
+          <ul>
+            <li>Patient scheduling and appointment management</li>
+            <li>SOAP notes and clinical documentation</li>
+            <li>Secure provider-to-patient messaging (in-app)</li>
+            <li>SMS appointment reminders and notifications</li>
+            <li>Patient portal for self-service access</li>
+            <li>Billing and balance tracking</li>
+            <li>Provider schedule and time-off management</li>
+          </ul>
+          <p>
+            Grit is not an emergency communication system. Do not use it to send urgent or time-sensitive
+            medical communications. Always direct patients to call 911 or go to the nearest emergency room
+            in the event of a medical emergency.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Account registration</h2>
+          <p>
+            To access Grit, you must register with accurate information including your legal name, practice
+            name, and a valid business email. You are responsible for:
+          </p>
+          <ul>
+            <li>Maintaining the confidentiality of your login credentials</li>
+            <li>All activity that occurs under your account</li>
+            <li>Promptly notifying Grit of any unauthorized access at <a href="mailto:support@chiropracticgrit.com">support@chiropracticgrit.com</a></li>
+            <li>Ensuring that all staff users added to your practice account comply with these terms</li>
+          </ul>
+          <p>
+            You may not share login credentials between users. Each provider and staff member must have
+            their own account.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. HIPAA compliance & business associate agreement</h2>
+          <p>
+            Grit is designed to operate in a HIPAA-compliant manner. As a covered entity or business
+            associate under HIPAA, you acknowledge:
+          </p>
+          <ul>
+            <li>Grit acts as a Business Associate when handling Protected Health Information (PHI) on your behalf</li>
+            <li>A Business Associate Agreement (BAA) is included with all Grit Pro subscriptions</li>
+            <li>You are responsible for ensuring your use of Grit complies with all applicable federal and state healthcare privacy laws</li>
+            <li>You must not transmit unsecured PHI through channels not designed for it (e.g., SMS messages must not contain diagnoses, test results, or clinical details)</li>
+          </ul>
+          <p>
+            The BAA is incorporated by reference into these terms. If you require a countersigned copy,
+            contact <a href="mailto:support@chiropracticgrit.com">support@chiropracticgrit.com</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Acceptable use</h2>
+          <p>
+            You agree to use Grit only for lawful purposes and in accordance with these terms. You may not:
+          </p>
+          <ul>
+            <li>Use the platform to store or transmit content that violates any applicable law or regulation</li>
+            <li>Attempt to gain unauthorized access to any part of the platform or other users' accounts</li>
+            <li>Reverse engineer, decompile, or disassemble any part of the software</li>
+            <li>Use automated scripts, bots, or scrapers to access the platform</li>
+            <li>Send unsolicited or spam communications to patients through any Grit messaging channel</li>
+            <li>Use the platform for any purpose other than managing your chiropractic practice</li>
+            <li>Resell or sublicense access to the platform to third parties</li>
+          </ul>
+          <p>
+            Violation of acceptable use terms may result in immediate account suspension without refund.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Payment & billing</h2>
+          <p>
+            Grit Pro is billed at <strong>$99/month</strong> per practice. Billing terms:
+          </p>
+          <ul>
+            <li>Subscriptions are billed monthly in advance</li>
+            <li>Payment is due at the start of each billing cycle</li>
+            <li>Accepted payment methods include major credit and debit cards</li>
+            <li>Failed payments may result in a grace period followed by account suspension</li>
+            <li>All fees are in USD and are non-refundable except as required by law</li>
+            <li>Grit reserves the right to change pricing with 30 days' written notice</li>
+          </ul>
+          <p>
+            Add-on services (such as additional SMS phone numbers) may be billed separately
+            as usage-based charges.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Cancellation & termination</h2>
+          <p>
+            You may cancel your subscription at any time from your account settings or by contacting
+            <a href="mailto:support@chiropracticgrit.com">support@chiropracticgrit.com</a>.
+          </p>
+          <ul>
+            <li>Cancellation takes effect at the end of the current billing period</li>
+            <li>You retain access to the platform until the period ends</li>
+            <li>No refunds are issued for partial billing periods</li>
+            <li>After cancellation, you have 30 days to export your data before it is permanently deleted</li>
+          </ul>
+          <p>
+            Grit may terminate your account without notice for:
+          </p>
+          <ul>
+            <li>Violation of these terms or applicable law</li>
+            <li>Non-payment after the grace period</li>
+            <li>Use that creates legal, regulatory, or reputational risk to Grit or its users</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>8. Data ownership & portability</h2>
+          <p>
+            You own your data. Grit does not sell, rent, or share your practice data or patient information
+            with third parties for marketing purposes. Grit may access your data only to:
+          </p>
+          <ul>
+            <li>Provide and improve the platform</li>
+            <li>Comply with legal obligations</li>
+            <li>Investigate abuse or security incidents</li>
+          </ul>
+          <p>
+            You may export your data at any time from the platform. Data exports include patient records,
+            appointment history, clinical notes, and billing information in standard formats.
+          </p>
+        </section>
+
+        <section>
+          <h2>9. SMS communications</h2>
+          <p>
+            Use of Grit's SMS messaging features (appointment reminders, notifications, two-way texting)
+            is subject to our <a href="/sms-terms">SMS Terms &amp; Privacy Policy</a> in addition to these terms.
+            Key obligations include:
+          </p>
+          <ul>
+            <li>Obtaining documented patient consent before sending SMS messages</li>
+            <li>Honoring opt-out requests immediately (STOP keyword or portal)</li>
+            <li>Not sending PHI or clinical content via SMS</li>
+            <li>Complying with TCPA and applicable carrier regulations</li>
+            <li>Sending messages only during permitted hours (8 AM – 9 PM local patient time)</li>
+          </ul>
+          <p>
+            You are responsible for compliance with all applicable laws governing your SMS communications.
+            Grit provides the technical infrastructure; the practice is the sender of record.
+          </p>
+        </section>
+
+        <section>
+          <h2>10. Intellectual property</h2>
+          <p>
+            Grit and its underlying software, design, trademarks, and content are the intellectual property
+            of Chiropractic Grit and are protected by applicable law. These terms do not grant you any
+            ownership interest in the platform.
+          </p>
+          <p>
+            You retain all rights to your data, clinical content, and patient records. By using Grit, you
+            grant us a limited, non-exclusive license to store and process your data solely to provide the
+            services described in these terms.
+          </p>
+        </section>
+
+        <section>
+          <h2>11. Disclaimer of warranties</h2>
+          <p>
+            The Grit platform is provided <strong>"as is"</strong> and <strong>"as available"</strong> without
+            warranties of any kind, express or implied, including but not limited to warranties of
+            merchantability, fitness for a particular purpose, or non-infringement.
+          </p>
+          <p>
+            Grit does not warrant that the platform will be error-free, uninterrupted, or free from security
+            vulnerabilities. Healthcare decisions must not be made solely based on information processed
+            through the platform.
+          </p>
+        </section>
+
+        <section>
+          <h2>12. Limitation of liability</h2>
+          <p>
+            To the maximum extent permitted by applicable law, Chiropractic Grit's total liability for
+            any claim arising from or related to these terms or the platform shall not exceed the greater
+            of (a) the total fees paid by you in the three months preceding the claim, or (b) $100.
+          </p>
+          <p>
+            In no event shall Grit be liable for indirect, incidental, special, consequential, or punitive
+            damages, including lost profits, data loss, or business interruption, even if advised of the
+            possibility of such damages.
+          </p>
+        </section>
+
+        <section>
+          <h2>13. Indemnification</h2>
+          <p>
+            You agree to indemnify and hold harmless Chiropractic Grit, its officers, employees, and
+            agents from any claims, damages, or expenses (including reasonable attorneys' fees) arising from:
+          </p>
+          <ul>
+            <li>Your use of the platform in violation of these terms</li>
+            <li>Your violation of any applicable law or regulation (including HIPAA and TCPA)</li>
+            <li>Any claim by a patient related to your practice's communications or clinical decisions</li>
+            <li>Any content you submit, transmit, or store through the platform</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>14. Governing law & disputes</h2>
+          <p>
+            These terms are governed by the laws of the State of Delaware, without regard to its conflict
+            of law provisions. Any dispute arising from these terms shall be resolved by binding arbitration
+            administered under the rules of the American Arbitration Association, except that either party
+            may seek injunctive relief in a court of competent jurisdiction for intellectual property
+            or confidentiality violations.
+          </p>
+          <p>
+            You waive the right to participate in class action lawsuits or class-wide arbitration.
+          </p>
+        </section>
+
+        <section>
+          <h2>15. Changes to these terms</h2>
+          <p>
+            We may update these terms from time to time. When we do, we will update the "Last updated" date
+            at the top of this page and notify active subscribers via email at least 14 days before
+            material changes take effect. Continued use of the platform after the effective date constitutes
+            acceptance of the revised terms.
+          </p>
+          <p>
+            If you disagree with a material change, you may cancel your subscription before the change
+            takes effect and receive a prorated refund for any prepaid unused period.
+          </p>
+        </section>
+
+        <section class="contact-section">
+          <h2>16. Contact</h2>
+          <p>
+            For questions about these terms, your subscription, or your data:
+          </p>
+          <ul>
+            <li>Email: <a href="mailto:support@chiropracticgrit.com">support@chiropracticgrit.com</a></li>
+            <li>For HIPAA-related requests: <a href="mailto:support@chiropracticgrit.com">support@chiropracticgrit.com</a></li>
+          </ul>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page {
+    padding: 52px 0 84px;
+  }
+
+  .page-header {
+    max-width: 700px;
+    margin-bottom: 52px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .kicker {
+    color: var(--ember);
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    margin: 0;
+  }
+
+  .header-copy {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 62ch;
+  }
+
+  .last-updated {
+    color: var(--subtle);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .legal-content {
+    max-width: 740px;
+  }
+
+  section {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  section:last-child {
+    border-bottom: none;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    letter-spacing: -0.03em;
+    margin: 0 0 16px;
+  }
+
+  p {
+    color: var(--muted);
+    font-size: 0.97rem;
+    line-height: 1.75;
+    margin: 0 0 14px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px;
+    display: grid;
+    gap: 10px;
+  }
+
+  li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--ember);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  a {
+    color: var(--ember);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--ember-strong);
+  }
+
+  strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  @media (max-width: 600px) {
+    .page {
+      padding: 36px 0 64px;
+    }
+
+    section {
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+    }
+  }
+</style>
