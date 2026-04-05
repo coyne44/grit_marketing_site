@@ -3,18 +3,62 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
-const sections = [
-  { id: 'scheduling', label: 'Scheduling' },
-  { id: 'patients', label: 'Patients' },
-  { id: 'portal', label: 'Portal' },
-  { id: 'notes', label: 'Clinical Notes' },
-  { id: 'treatment-plans', label: 'Treatment Plans' },
-  { id: 'cases', label: 'Cases' },
-  { id: 'billing', label: 'Billing' },
-  { id: 'texting', label: 'Texting' },
-  { id: 'payments', label: 'Payments' },
-  { id: 'team', label: 'Team' },
-  { id: 'security', label: 'Security' },
+const features = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>`,
+    name: 'Scheduling',
+    tags: ['Weekly calendar view', 'Custom appointment types', 'Recurring bookings'],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>`,
+    name: 'Patient Records',
+    tags: ['Complete profiles & history', 'Insurance management', 'Clinical image storage'],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>`,
+    name: 'Patient Portal',
+    tags: ['Online booking', 'Self check-in', 'Digital intake & HIPAA consent'],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>`,
+    name: 'Clinical Notes',
+    tags: ['SOAP, Eval & Re-eval', 'Macro library + spine diagram', 'Digital signatures & amendments'],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" /></svg>`,
+    name: 'Treatment Plans',
+    tags: ['Plan templates', 'Visit tracking & progress banners', 'Measurable treatment goals'],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" /></svg>`,
+    name: 'Cases',
+    tags: ['PI, workers\u2019 comp, auto, Medicare', 'ICD-10 problem list', 'Pain trend tracking'],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25M9 12.75h6m-6 2.25h3m-3-9h6.75m-3.75 11.25v-2.25m0 0V3.375m0 11.25H5.625c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H9" /></svg>`,
+    name: 'Billing & Superbills',
+    tags: ['ICD-10 + CPT at point of care', 'One-click PDF generation', 'Patient self-download from portal'],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>`,
+    name: 'Payments',
+    tags: ['Stripe-powered', 'Text-to-pay', 'Automatic receipts'],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>`,
+    name: 'Automated Texting',
+    tags: ['Appointment reminders', 'Two-way SMS', 'Delivery tracking'],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" /></svg>`,
+    name: 'Team & Roles',
+    tags: ['Provider + staff accounts', 'Role-based access control', 'Secure onboarding'],
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>`,
+    name: 'HIPAA Compliance',
+    tags: ['Amendment-only signed notes', 'Full clinical audit log', 'BAA available'],
+  },
 ];
 
 const comparison = [
@@ -51,346 +95,83 @@ const comparison = [
       </div>
     </div>
 
-    <!-- Sticky anchor nav -->
-    <div class="anchor-nav-wrap">
-      <div class="container">
-        <nav class="anchor-nav" aria-label="Feature sections">
-          {sections.map((s) => (
-            <a href={`#${s.id}`} class="anchor-link">{s.label}</a>
-          ))}
-        </nav>
-      </div>
-    </div>
-
     <div class="container sections-wrap">
 
-      <!-- Scheduling -->
-      <section class="feature-section" id="scheduling">
-        <div class="section-head">
-          <div class="section-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>
-          </div>
-          <div class="kicker">Scheduling & Calendar</div>
-          <h2>Your day, your way — visualized down to the minute.</h2>
-          <p class="section-copy">Built around high-volume chiropractic practices where a 10-minute adjustment window is the norm, not the exception.</p>
+      <!-- What's included grid -->
+      <section class="included-section">
+        <div class="included-head">
+          <div class="kicker">What&rsquo;s Included</div>
+          <h2>Everything you need. One price.</h2>
+          <p class="section-copy">No add-ons. No &ldquo;advanced plan required.&rdquo; If it&rsquo;s on this list, it&rsquo;s included.</p>
         </div>
-        <div class="feature-grid">
-          <div class="feature-item"><strong>Weekly calendar view</strong> — color-coded blocks sized by duration. Spot openings and bottlenecks at a glance.</div>
-          <div class="feature-item"><strong>Configurable time slots</strong> — 5, 10, 15, or 30-minute grids. Set it to match how you practice.</div>
-          <div class="feature-item"><strong>Custom appointment types</strong> — New Patient, Adjustment, Re-Eval, and whatever else you need. Each gets its own color and duration.</div>
-          <div class="feature-item"><strong>Recurring appointments</strong> — book a patient every Tuesday and Thursday for 6 weeks in one action. Daily, weekly, and monthly recurrence with flexible end conditions.</div>
-          <div class="feature-item"><strong>Appointment status tracking</strong> — Scheduled → Checked In → In Progress → Completed. Mark no-shows. Cancel with a reason. Every transition is tracked.</div>
-          <div class="feature-item"><strong>Time-off management</strong> — vacation, sick days, holidays. All-day or partial. Visual striping on the calendar so nothing gets booked over it.</div>
-          <div class="feature-item"><strong>Bulk operations</strong> — cancel multiple appointments or mark a block of no-shows in one action. Because sometimes a snowstorm happens.</div>
-          <div class="feature-item"><strong>Per-day working hours</strong> — custom start/end times for every day of the week. Monday doesn't always look like Thursday.</div>
-        </div>
-      </section>
-
-      <!-- Patient Management -->
-      <section class="feature-section" id="patients">
-        <div class="section-head">
-          <div class="section-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
-          </div>
-          <div class="kicker">Patient Management</div>
-          <h2>Every patient. Every detail. One place.</h2>
-          <p class="section-copy">The full picture of each patient — not just name and phone number, but everything you need to treat, bill, and communicate with them.</p>
-        </div>
-        <div class="feature-grid">
-          <div class="feature-item"><strong>Complete patient profiles</strong> — demographics, two phone numbers, full address, employer, marital status, spouse info, and emergency contact. Every field from your paper intake form, digitized.</div>
-          <div class="feature-item"><strong>Instant search</strong> — find any patient by name, email, or phone. Case-insensitive, real-time results as you type.</div>
-          <div class="feature-item"><strong>Inline editing</strong> — click any field, edit it, save. No separate modals, no navigating away.</div>
-          <div class="feature-item"><strong>Patient images</strong> — store up to 10 clinical images per patient. X-rays, posture photos, progress shots — right on the profile.</div>
-          <div class="feature-item"><strong>Insurance management</strong> — primary and secondary coverage with member info, copay, deductible, coinsurance, visit limits, and authorization tracking. Upload front and back card images.</div>
-          <div class="feature-item"><strong>Staff verification workflow</strong> — mark insurance as verified with notes, verified-by, and timestamp. Deactivate and reactivate policies without deleting history.</div>
-        </div>
-      </section>
-
-      <!-- Patient Portal -->
-      <section class="feature-section" id="portal">
-        <div class="section-head">
-          <div class="section-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>
-          </div>
-          <div class="kicker">Patient Portal</div>
-          <h2>Give your patients a front door to your practice — open 24/7.</h2>
-          <p class="section-copy">A real self-service experience that reduces phone calls and front desk burden from day one. Not a bolt-on. Not an add-on. Built in.</p>
-        </div>
-
-        <div class="portal-cards">
-          <div class="portal-card">
-            <div class="portal-card-title">Online Booking</div>
-            <ul>
-              <li>Patients book from available slots that respect your real schedule, lunch, and time off</li>
-              <li>Only providers they've seen before — no accidental bookings with the wrong doc</li>
-              <li>You control which appointment types are self-bookable</li>
-              <li>You get notified. They get a confirmation</li>
-            </ul>
-          </div>
-          <div class="portal-card">
-            <div class="portal-card-title">Booking Controls</div>
-            <ul>
-              <li>Enable or disable self-booking with one toggle</li>
-              <li>Minimum advance booking windows (1 hour to 1 week)</li>
-              <li>Cancellation windows to prevent last-minute no-shows</li>
-              <li>Overbooking controls with configurable max-per-slot limits</li>
-              <li>Per-provider, per-appointment-type configuration</li>
-            </ul>
-          </div>
-          <div class="portal-card">
-            <div class="portal-card-title">Self-Service Check-In</div>
-            <ul>
-              <li>Verify contact info and insurance before they sit down</li>
-              <li>Rate each active complaint (0–10) and report changes</li>
-              <li>Report new concerns so you know before you walk in the room</li>
-            </ul>
-          </div>
-          <div class="portal-card">
-            <div class="portal-card-title">Intake Forms & HIPAA</div>
-            <ul>
-              <li>Full digital health history — complaints, medications, allergies, surgeries, family history, lifestyle</li>
-              <li>Auto-generates a PDF on completion</li>
-              <li>HIPAA consent with digital signature, date stamp, and IP logging</li>
-              <li>Signed PDFs stored automatically for your records</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Clinical Notes -->
-      <section class="feature-section" id="notes">
-        <div class="section-head">
-          <div class="section-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
-          </div>
-          <div class="kicker">Clinical Notes</div>
-          <h2>Chart faster than you ever have. Stay compliant while you do it.</h2>
-          <p class="section-copy">Purpose-built for chiropractic documentation — SOAP notes, initial evaluations, re-evaluations, and discharge summaries with the depth your payers require and the speed your schedule demands.</p>
-        </div>
-
-        <div class="notes-layout">
-          <div class="notes-speed">
-            <div class="notes-col-title">Write notes fast</div>
-            <div class="feature-item"><strong>Macros</strong> — personal text shortcuts organized by SOAP section. Name them, write once, insert at cursor with a single click. Build a library of your most common findings.</div>
-            <div class="feature-item"><strong>Interactive spine diagram</strong> — clickable vertebrae from Occiput to Coccyx. Click a level and it inserts into your Objective field at the cursor. No typing "T4-T6 subluxation complex."</div>
-            <div class="feature-item"><strong>Previous note pull-forward</strong> — GRIT fetches your last signed note. Check a box and carry forward what hasn't changed.</div>
-            <div class="feature-item"><strong>Auto-save every 3 seconds</strong> — no more lost work because you forgot to hit save.</div>
-          </div>
-
-          <div class="notes-compliance">
-            <div class="notes-col-title">Stay compliant</div>
-            <div class="feature-item"><strong>Note lifecycle</strong> — Draft → Signed → Billed → Locked. Once signed, the note is read-only. Period.</div>
-            <div class="feature-item"><strong>Digital signature with attestation</strong> — captures provider, timestamp, and auto-generates a formal attestation statement.</div>
-            <div class="feature-item"><strong>HIPAA-compliant amendments</strong> — every change records who made it, when, original value, new value, and why. The original is never overwritten.</div>
-            <div class="feature-item"><strong>Clinical audit log</strong> — every view, create, update, delete, print, and export is logged with user, IP address, timestamp, and before/after values.</div>
-          </div>
-        </div>
-
-        <div class="notes-detail-grid">
-          <div class="detail-card">
-            <div class="detail-title">Note Types</div>
-            <ul><li>SOAP Notes</li><li>Initial Evaluations</li><li>Re-Evaluations</li><li>Discharge Summaries</li></ul>
-          </div>
-          <div class="detail-card">
-            <div class="detail-title">Exam Findings</div>
-            <ul><li>Subluxation analysis</li><li>Range of motion</li><li>Orthopedic tests</li><li>Neurological exam</li><li>Postural analysis</li><li>Palpation findings</li></ul>
-          </div>
-          <div class="detail-card">
-            <div class="detail-title">Billing-Ready</div>
-            <ul><li>ICD-10 codes with CMS-1500 Box 21 pointers</li><li>CPT codes with units, modifiers, charges</li><li>Diagnosis pointers per procedure</li><li>CMT region tracking</li></ul>
-          </div>
-          <div class="detail-card">
-            <div class="detail-title">Vitals & Systems</div>
-            <ul><li>BP, pulse, temp, height, weight</li><li>Auto-calculated BMI</li><li>Structured 9+ system review</li><li>Complaint pain trends over time</li></ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Treatment Plans -->
-      <section class="feature-section" id="treatment-plans">
-        <div class="section-head">
-          <div class="section-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" /></svg>
-          </div>
-          <div class="kicker">Treatment Plans</div>
-          <h2>Map out the care. Track the progress. Know exactly where every patient stands.</h2>
-          <p class="section-copy">Every note shows a color-coded progress banner so you always know where a patient is in their care plan — without digging through the chart.</p>
-        </div>
-        <div class="feature-grid">
-          <div class="feature-item"><strong>Plan items</strong> — define each phase of care with appointment type, frequency (3x/week for 4 weeks), or flat quantity, and sequence order.</div>
-          <div class="feature-item"><strong>Plan templates</strong> — build reusable templates at the practice level. Your most common care plans are one click away.</div>
-          <div class="feature-item"><strong>Link plans to appointments</strong> — assign a plan to any appointment so each visit counts toward the total automatically.</div>
-          <div class="feature-item"><strong>Treatment goals</strong> — set measurable goals (pain reduction, ROM improvement, return to work) with baseline, target, and current values. Track achievement dates.</div>
-        </div>
-        <div class="plan-progress">
-          <div class="progress-label">Plan progress banner on every note:</div>
-          <div class="progress-badges">
-            <div class="badge badge-blue">4+ visits remaining</div>
-            <div class="badge badge-amber">2–3 visits left</div>
-            <div class="badge badge-red">Last visit</div>
-            <div class="badge badge-green">Plan complete</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Cases -->
-      <section class="feature-section" id="cases">
-        <div class="section-head">
-          <div class="section-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" /></svg>
-          </div>
-          <div class="kicker">Cases & Problem List</div>
-          <h2>Organize complex patients without complexity.</h2>
-          <p class="section-copy">Group visits, complaints, diagnoses, and goals under a specific case — with full support for the case types that actually matter in chiropractic.</p>
-        </div>
-        <div class="feature-grid">
-          <div class="feature-item"><strong>Standard care</strong> — straightforward episodic care cases.</div>
-          <div class="feature-item"><strong>Personal injury (PI)</strong> — with attorney name, firm, phone, email, and claim number.</div>
-          <div class="feature-item"><strong>Workers' compensation</strong> — employer details, job title, and injury description.</div>
-          <div class="feature-item"><strong>Auto accident & Medicare</strong> — dedicated case types with appropriate fields.</div>
-          <div class="feature-item"><strong>Problem list</strong> — running list of diagnoses with ICD-10 codes, status (active, chronic, resolved, ruled out), laterality, and primary diagnosis flag.</div>
-          <div class="feature-item"><strong>Pain trend tracking</strong> — every check-in captures complaint ratings automatically. Pain trends build over time with no extra charting work.</div>
-        </div>
-      </section>
-
-      <!-- Billing -->
-      <section class="feature-section" id="billing">
-        <div class="section-head">
-          <div class="section-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25M9 12.75h6m-6 2.25h3m-3-9h6.75m-3.75 11.25v-2.25m0 0V3.375m0 11.25H5.625c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H9" /></svg>
-          </div>
-          <div class="kicker">Billing & Superbills</div>
-          <h2>Get the paperwork right so you get paid right.</h2>
-          <p class="section-copy">Billing data is entered at the point of care — not reconstructed after the fact. Your superbills are accurate because your notes are accurate.</p>
-        </div>
-        <div class="feature-grid">
-          <div class="feature-item"><strong>Superbill generation</strong> — select any completed appointment with a signed note and generate a clean, professional PDF.</div>
-          <div class="feature-item"><strong>Batch superbills</strong> — select multiple visits and generate a combined PDF in one action.</div>
-          <div class="feature-item"><strong>Patient-facing superbills</strong> — patients download their own PDFs from the portal for insurance reimbursement. Zero staff work required.</div>
-          <div class="feature-item"><strong>Encounter-level billing data</strong> — ICD-10 diagnosis pointers, CPT codes with units, up to 4 modifiers, charge amounts, and regions treated for CMT codes. Everything your biller needs, built into every note.</div>
-        </div>
-      </section>
-
-      <!-- Texting -->
-      <section class="feature-section" id="texting">
-        <div class="section-head">
-          <div class="section-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
-          </div>
-          <div class="kicker">Automated Patient Texting</div>
-          <h2>Stop playing phone tag. Let GRIT handle the communication.</h2>
-          <p class="section-copy">Automated reminders, two-way texting, and customizable templates — built directly into GRIT via Telnyx. One login, one system, one workflow.</p>
-        </div>
-        <div class="feature-grid">
-          <div class="feature-item"><strong>Automated appointment reminders</strong> — set your timing rules once. GRIT sends SMS reminders before every appointment automatically.</div>
-          <div class="feature-item"><strong>Two-way texting</strong> — patients can confirm, cancel, or reply. Their responses come straight into GRIT, not your personal phone.</div>
-          <div class="feature-item"><strong>Customizable message templates</strong> — write messages that sound like your practice, not a corporate script.</div>
-          <div class="feature-item"><strong>Delivery tracking</strong> — know whether a message was delivered, not just sent.</div>
-        </div>
-      </section>
-
-      <!-- Payments -->
-      <section class="feature-section" id="payments">
-        <div class="section-head">
-          <div class="section-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>
-          </div>
-          <div class="kicker">Payments</div>
-          <h2>Collect what you're owed — before, during, or after the visit.</h2>
-          <p class="section-copy">Stripe-powered. PCI-DSS compliant out of the box. Card data never touches your server. Zero setup on your end.</p>
-        </div>
-        <div class="feature-grid">
-          <div class="feature-item"><strong>In-app payment collection</strong> — collect copays, balances, and visit fees right from the patient's profile.</div>
-          <div class="feature-item"><strong>Text-to-pay</strong> — send a secure payment link via SMS. Patients pay from their phone before they even walk through the door.</div>
-          <div class="feature-item"><strong>Automatic receipts</strong> — every payment generates a receipt. No more handwritten slips.</div>
-          <div class="feature-item"><strong>Per-patient payment history</strong> — see every payment a patient has made, when, and for what.</div>
-        </div>
-      </section>
-
-      <!-- Team -->
-      <section class="feature-section" id="team">
-        <div class="section-head">
-          <div class="section-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" /></svg>
-          </div>
-          <div class="kicker">Practice & Team Management</div>
-          <h2>Run your office, not just your adjusting room.</h2>
-          <p class="section-copy">Role-based access so everyone sees exactly what they should — and nothing they shouldn't.</p>
-        </div>
-        <div class="feature-grid">
-          <div class="feature-item"><strong>Provider profiles</strong> — professional name, license number, NPI, and contact info. Each provider has their own schedule, lunch breaks, time off, and macros.</div>
-          <div class="feature-item"><strong>Staff accounts</strong> — scheduling, patient management, and front desk tools. Clinical notes are out of scope — by design.</div>
-          <div class="feature-item"><strong>Employee onboarding</strong> — add a new team member and GRIT auto-generates their account, sets a temporary password, and sends an invite. They set their own password on first login.</div>
-          <div class="feature-item"><strong>HIPAA form customization</strong> — edit the text for all three HIPAA consent sections or use GRIT's professionally written defaults.</div>
-          <div class="feature-item"><strong>Documentation mode</strong> — choose between full, standard, or minimal documentation requirements to match how your practice charts.</div>
-          <div class="feature-item"><strong>Forced password change</strong> — new employees must change their temporary password on first login. No exceptions.</div>
-        </div>
-
-        <div class="roles-table-wrap">
-          <div class="roles-label">Role-based access control:</div>
-          <div class="roles-table">
-            <div class="roles-header">
-              <div></div>
-              <div>Provider</div>
-              <div>Staff</div>
-              <div>Patient</div>
-            </div>
-            {[
-              ['Write clinical notes', true, false, false],
-              ['Sign notes', true, false, false],
-              ['Manage patients', true, true, false],
-              ['View/manage schedule', true, true, false],
-              ['Book appointments', false, true, true],
-              ['View own records', false, false, true],
-              ['Practice settings', true, false, false],
-            ].map(([label, provider, staff, patient]) => (
-              <div class="roles-row">
-                <div class="role-label">{label}</div>
-                <div class={provider ? 'check yes' : 'check no'}>{provider ? '✓' : '—'}</div>
-                <div class={staff ? 'check yes' : 'check no'}>{staff ? '✓' : '—'}</div>
-                <div class={patient ? 'check yes' : 'check no'}>{patient ? '✓' : '—'}</div>
+        <div class="feature-tiles">
+          {features.map((f) => (
+            <div class="tile">
+              <div class="tile-top">
+                <div class="tile-icon" set:html={f.icon} />
+                <div class="tile-check">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>
+                </div>
               </div>
-            ))}
-          </div>
+              <div class="tile-name">{f.name}</div>
+              <ul class="tile-tags">
+                {f.tags.map((t) => <li>{t}</li>)}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
 
-      <!-- Security -->
-      <section class="feature-section" id="security">
-        <div class="section-head">
-          <div class="section-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
+      <!-- Spotlights -->
+      <section class="spotlights-section">
+        <div class="spotlights">
+
+          <div class="spotlight">
+            <div class="spotlight-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+            </div>
+            <div class="kicker">Clinical Notes</div>
+            <h3>Chart in under a minute.</h3>
+            <p class="section-copy">Purpose-built for chiropractic. The tools that actually save time — not just a generic note editor.</p>
+            <ul class="spotlight-list">
+              <li><strong>Macro library</strong> — personal text shortcuts per SOAP section. Write once, insert at cursor with one click.</li>
+              <li><strong>Clickable spine diagram</strong> — tap a vertebral level and it writes itself into your objective field. No typing &ldquo;C4&ndash;C6 subluxation complex.&rdquo;</li>
+              <li><strong>Pull-forward</strong> — carry unchanged findings from your last signed note in one click.</li>
+              <li><strong>Compliant by design</strong> — signed notes are read-only. Amendments are tracked with who, when, and why.</li>
+            </ul>
           </div>
-          <div class="kicker">Security & HIPAA Compliance</div>
-          <h2>Not an afterthought. Foundational.</h2>
-          <p class="section-copy">Role-based data isolation. Amendment-only editing on signed notes. A full clinical audit log. HIPAA isn't a checkbox — it's baked into the architecture.</p>
-        </div>
-        <div class="feature-grid">
-          <div class="feature-item"><strong>JWT authentication</strong> — 5-minute access tokens with automatic refresh. Sessions are secure, time-limited, and stateless.</div>
-          <div class="feature-item"><strong>Role-based data isolation</strong> — enforced at every API endpoint, not just the UI. Providers see clinical data. Staff see administrative data. Patients see only their own records.</div>
-          <div class="feature-item"><strong>Practice-scoped data</strong> — every query is filtered to the user's practice. Cross-practice data leakage is architecturally impossible.</div>
-          <div class="feature-item"><strong>Amendment-only editing on signed notes</strong> — once signed, the original text is permanent. Changes go through a formal amendment process. This is the HIPAA standard — enforced in code, not policy.</div>
-          <div class="feature-item"><strong>Clinical audit logging</strong> — every view, create, update, delete, print, and export logged with user identity, IP address, timestamp, and before/after values.</div>
-          <div class="feature-item"><strong>Modern, maintained stack</strong> — Django 4 + Vue 3. Actively patched frameworks. No legacy code from 2006 hiding in production.</div>
-        </div>
-        <div class="security-cta">
-          <a href="/security" class="ghost-btn">Full security details →</a>
+
+          <div class="spotlight">
+            <div class="spotlight-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+            </div>
+            <div class="kicker">Patient Portal</div>
+            <h3>Built in. Not bolted on.</h3>
+            <p class="section-copy">Others charge $50/month extra for a patient portal. In GRIT, it&rsquo;s just part of the software.</p>
+            <ul class="spotlight-list">
+              <li><strong>Online booking</strong> — patients book from real available slots that respect your schedule, lunch, and time off.</li>
+              <li><strong>Self check-in</strong> — patients rate complaints and report changes before you walk in the room.</li>
+              <li><strong>Digital intake + HIPAA</strong> — full health history, signed consent, PDF stored automatically.</li>
+              <li><strong>Self-serve superbills</strong> — patients download their own PDFs for insurance reimbursement. Zero staff work.</li>
+            </ul>
+          </div>
+
         </div>
       </section>
 
-      <!-- Comparison table -->
+      <!-- Why GRIT comparison -->
       <section class="comparison-section">
         <div class="section-head">
           <div class="kicker">Why GRIT?</div>
-          <h2>What you're replacing.</h2>
-          <p class="section-copy">Most EHR companies started by building for hospitals and large multi-specialty clinics — then stripped features down and called it a "small practice plan." You're paying for complexity you'll never use while missing the things you actually need.</p>
+          <h2>What you&rsquo;re replacing.</h2>
+          <p class="section-copy">Most EHR companies started by building for hospitals and large multi-specialty clinics — then stripped features down and called it a &ldquo;small practice plan.&rdquo; You&rsquo;re paying for complexity you&rsquo;ll never use while missing the things you actually need.</p>
         </div>
 
         <div class="comparison-table">
           <div class="comp-header">
             <div></div>
             <div class="comp-grit">GRIT</div>
-            <div class="comp-them">The Software You're Using Now</div>
+            <div class="comp-them">The Software You&rsquo;re Using Now</div>
           </div>
           {comparison.map((row) => (
             <div class="comp-row">
@@ -455,88 +236,26 @@ const comparison = [
     margin: 0;
   }
 
+  h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    margin: 0;
+  }
+
+  h3 {
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    margin: 0;
+  }
+
   .header-copy {
     color: var(--muted);
     font-size: 1.05rem;
     line-height: 1.7;
     margin: 0;
     max-width: 60ch;
-  }
-
-  /* Anchor nav */
-  .anchor-nav-wrap {
-    position: sticky;
-    top: 76px;
-    z-index: 30;
-    backdrop-filter: blur(14px);
-    background: rgba(42,42,42,0.82);
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 0;
-  }
-
-  .anchor-nav {
-    display: flex;
-    gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .anchor-nav::-webkit-scrollbar { display: none; }
-
-  .anchor-link {
-    display: inline-flex;
-    align-items: center;
-    padding: 14px 16px;
-    color: var(--subtle);
-    font-size: 0.88rem;
-    font-weight: 600;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: color 150ms ease, border-color 150ms ease;
-  }
-
-  .anchor-link:hover {
-    color: var(--text);
-    border-bottom-color: var(--ember);
-  }
-
-  /* Sections */
-  .sections-wrap {
-    padding-top: 8px;
-  }
-
-  .feature-section {
-    padding: 64px 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .feature-section:last-of-type {
-    border-bottom: none;
-  }
-
-  .section-head {
-    max-width: 760px;
-    margin-bottom: 36px;
-    display: grid;
-    gap: 10px;
-  }
-
-  .section-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 15px;
-    background: var(--ember-soft);
-    color: var(--ember);
-    display: grid;
-    place-items: center;
-    margin-bottom: 4px;
-  }
-
-  h2 {
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    line-height: 1.08;
-    letter-spacing: -0.04em;
-    margin: 0;
   }
 
   .section-copy {
@@ -546,266 +265,169 @@ const comparison = [
     margin: 0;
   }
 
-  /* Feature grid */
-  .feature-grid {
+  .sections-wrap {
+    padding-top: 8px;
+  }
+
+  /* ── Included grid ── */
+  .included-section {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .included-head {
+    max-width: 600px;
+    margin-bottom: 40px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
+    gap: 10px;
   }
 
-  .feature-item {
-    padding: 18px 20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.026), rgba(255,255,255,0.016));
-    border: 1px solid var(--line);
-    color: var(--muted);
-    font-size: 0.93rem;
-    line-height: 1.65;
-  }
-
-  .feature-item:first-child { border-radius: 16px 0 0 0; }
-  .feature-item:nth-child(2) { border-radius: 0 16px 0 0; }
-  .feature-item:nth-last-child(2):nth-child(odd) { border-radius: 0 0 0 16px; }
-  .feature-item:last-child:nth-child(even) { border-radius: 0 0 16px 0; }
-  .feature-item:last-child:nth-child(odd) { border-radius: 0 0 16px 16px; grid-column: 1/-1; }
-
-  .feature-item strong {
-    color: var(--text);
-    font-weight: 700;
-  }
-
-  /* Portal cards */
-  .portal-cards {
+  .feature-tiles {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
 
-  .portal-card {
-    padding: 24px;
+  .tile {
+    padding: 20px 22px 22px;
     border-radius: 18px;
     border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.016));
+    background: linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.014));
+    display: grid;
+    gap: 10px;
+    align-content: start;
   }
 
-  .portal-card-title {
-    font-weight: 800;
-    font-size: 0.9rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  .tile-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .tile-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--ember-soft);
     color: var(--ember);
-    margin-bottom: 14px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
   }
 
-  .portal-card ul {
+  .tile-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  .tile-name {
+    font-weight: 800;
+    font-size: 0.97rem;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .tile-tags {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
-    gap: 8px;
+    gap: 4px;
   }
 
-  .portal-card li {
+  .tile-tags li {
+    font-size: 0.84rem;
     color: var(--muted);
-    font-size: 0.92rem;
-    line-height: 1.55;
+    line-height: 1.45;
+    padding-left: 12px;
+    position: relative;
+  }
+
+  .tile-tags li::before {
+    content: '·';
+    position: absolute;
+    left: 2px;
+    color: var(--subtle);
+  }
+
+  /* ── Spotlights ── */
+  .spotlights-section {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .spotlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .spotlight {
+    padding: 32px 36px;
+    border-radius: 22px;
+    border: 1px solid var(--line);
+    background: linear-gradient(135deg, rgba(86,38,12,0.28), rgba(42,42,42,0.6));
+    display: grid;
+    gap: 12px;
+    align-content: start;
+  }
+
+  .spotlight-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    background: var(--ember-soft);
+    color: var(--ember);
+    display: grid;
+    place-items: center;
+    margin-bottom: 2px;
+  }
+
+  .spotlight-list {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .spotlight-list li {
+    color: var(--muted);
+    font-size: 0.93rem;
+    line-height: 1.6;
     padding-left: 14px;
     position: relative;
   }
 
-  .portal-card li::before {
+  .spotlight-list li::before {
     content: '–';
     position: absolute;
     left: 0;
     color: var(--ember);
   }
 
-  /* Notes layout */
-  .notes-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-
-  .notes-speed,
-  .notes-compliance {
-    padding: 24px;
-    border-radius: 18px;
-    border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.016));
-    display: grid;
-    gap: 14px;
-    align-content: start;
-  }
-
-  .notes-col-title {
-    font-weight: 800;
-    font-size: 0.88rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ember);
-    margin-bottom: 2px;
-  }
-
-  .notes-layout .feature-item {
-    border-radius: 0;
-    background: none;
-    border: none;
-    border-top: 1px solid var(--line);
-    padding: 14px 0 0;
-  }
-
-  .notes-layout .feature-item:first-of-type {
-    border-top: none;
-    padding-top: 0;
-  }
-
-  .notes-detail-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-  }
-
-  .detail-card {
-    padding: 20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.024), rgba(255,255,255,0.014));
-    border: 1px solid var(--line);
-  }
-
-  .detail-card:first-child { border-radius: 14px 0 0 14px; }
-  .detail-card:last-child { border-radius: 0 14px 14px 0; }
-
-  .detail-title {
-    font-size: 0.82rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--subtle);
-    margin-bottom: 12px;
-  }
-
-  .detail-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 6px;
-  }
-
-  .detail-card li {
-    color: var(--muted);
-    font-size: 0.88rem;
-    line-height: 1.45;
-  }
-
-  /* Plan progress badges */
-  .plan-progress {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .progress-label {
-    color: var(--subtle);
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-
-  .progress-badges {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .badge {
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-size: 0.82rem;
+  .spotlight-list strong {
+    color: var(--text);
     font-weight: 700;
   }
 
-  .badge-blue { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.25); }
-  .badge-amber { background: rgba(251,191,36,0.12); color: #fde68a; border: 1px solid rgba(251,191,36,0.22); }
-  .badge-red { background: rgba(239,68,68,0.12); color: #fca5a5; border: 1px solid rgba(239,68,68,0.22); }
-  .badge-green { background: rgba(34,197,94,0.12); color: #86efac; border: 1px solid rgba(34,197,94,0.22); }
-
-  /* Roles table */
-  .roles-table-wrap {
-    margin-top: 28px;
-  }
-
-  .roles-label {
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--subtle);
-    margin-bottom: 12px;
-  }
-
-  .roles-table {
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .roles-header,
-  .roles-row {
-    display: grid;
-    grid-template-columns: 1fr repeat(3, 100px);
-  }
-
-  .roles-header {
-    background: rgba(255,255,255,0.03);
-    border-bottom: 1px solid var(--line);
-    font-size: 0.82rem;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--subtle);
-  }
-
-  .roles-header > div,
-  .roles-row > div {
-    padding: 12px 16px;
-  }
-
-  .roles-header > div:not(:first-child),
-  .roles-row > div:not(:first-child) {
-    text-align: center;
-    border-left: 1px solid var(--line);
-  }
-
-  .roles-row {
-    border-top: 1px solid var(--line);
-    font-size: 0.9rem;
-  }
-
-  .roles-row:first-of-type {
-    border-top: none;
-  }
-
-  .role-label {
-    color: var(--muted);
-  }
-
-  .check {
-    font-weight: 700;
-  }
-
-  .check.yes { color: var(--ember); }
-  .check.no { color: rgba(255,255,255,0.2); }
-
-  /* Security CTA */
-  .security-cta {
-    margin-top: 20px;
-  }
-
-  /* Comparison table */
+  /* ── Comparison table ── */
   .comparison-section {
     padding: 64px 0;
+  }
+
+  .section-head {
+    max-width: 760px;
+    margin-bottom: 36px;
+    display: grid;
+    gap: 10px;
   }
 
   .comparison-table {
@@ -884,7 +506,7 @@ const comparison = [
     color: #F4F1EC;
   }
 
-  /* Bottom CTA */
+  /* ── Bottom CTA ── */
   .bottom-cta {
     text-align: center;
     padding: 52px 24px;
@@ -922,66 +544,24 @@ const comparison = [
     transform: translateY(-1px);
   }
 
-  .ghost-btn {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    padding: 0 20px;
-    border-radius: 999px;
-    border: 1px solid var(--line-strong);
-    color: var(--muted);
-    font-weight: 600;
-    font-size: 0.92rem;
-    transition: 180ms ease;
+  /* ── Responsive ── */
+  @media (max-width: 960px) {
+    .feature-tiles {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .spotlights {
+      grid-template-columns: 1fr;
+    }
   }
 
-  .ghost-btn:hover {
-    color: var(--text);
-    border-color: rgba(244,241,236,0.28);
-    background: rgba(255,255,255,0.04);
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .feature-grid,
-    .portal-cards,
-    .notes-layout,
-    .notes-detail-grid {
+  @media (max-width: 640px) {
+    .feature-tiles {
       grid-template-columns: 1fr;
     }
 
-    .feature-item:first-child,
-    .feature-item:nth-child(2),
-    .feature-item:nth-last-child(2):nth-child(odd),
-    .feature-item:last-child:nth-child(even),
-    .feature-item:last-child:nth-child(odd) {
-      border-radius: 0;
-    }
-    .feature-item:first-child { border-radius: 14px 14px 0 0; }
-    .feature-item:last-child { border-radius: 0 0 14px 14px; grid-column: auto; }
-
-    .detail-card:first-child { border-radius: 14px 14px 0 0; }
-    .detail-card:last-child { border-radius: 0 0 14px 14px; }
-
-    .comp-header,
-    .comp-row {
-      grid-template-columns: 130px 1fr 1fr;
-    }
-
-    .roles-header,
-    .roles-row {
-      grid-template-columns: 1fr repeat(3, 72px);
-    }
-  }
-
-  @media (max-width: 600px) {
-    .anchor-link {
-      padding: 12px 12px;
-      font-size: 0.82rem;
-    }
-
-    .feature-section {
-      padding: 44px 0;
+    .spotlight {
+      padding: 24px 22px;
     }
 
     .comp-header,
