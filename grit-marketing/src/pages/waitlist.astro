@@ -109,6 +109,21 @@ const ehrs = [
               />
             </div>
 
+            <div class="field consent-field">
+              <label class="consent-label">
+                <input type="checkbox" id="sms_consent" name="sms_consent" value="yes" />
+                <span class="consent-box-text">
+                  <strong>Text me</strong>
+                  By signing up via text, you agree to receive recurring waitlist and onboarding
+                  messages from Chiropractic Grit at the phone number provided. Consent is not a
+                  condition of purchase. Reply STOP to unsubscribe. Reply HELP for help. Message
+                  frequency varies. Msg &amp; data rates may apply. View our
+                  <a href="/privacy">Privacy Policy</a> and
+                  <a href="/terms">Terms of Service</a>.
+                </span>
+              </label>
+            </div>
+
             <div class="field">
               <label for="practice_name">Practice Name</label>
               <input type="text" id="practice_name" name="practice_name" placeholder="Smith Chiropractic" />
@@ -157,22 +172,6 @@ const ehrs = [
             <div class="field">
               <label for="anything_else">What would make Grit perfect for your practice?</label>
               <textarea id="anything_else" name="anything_else" rows="3" placeholder="Feel free to share anything — features you need, frustrations with your current setup, questions…"></textarea>
-            </div>
-
-            <div class="field consent-field">
-              <label class="consent-label">
-                <input type="checkbox" id="sms_consent" name="sms_consent" value="yes" />
-                <span class="consent-box-text">
-                  <strong>Text me waitlist updates from Chiropractic Grit.</strong>
-                  By checking this box, you agree to receive SMS messages from Chiropractic Grit
-                  about your waitlist status, early access invites, launch announcements, and
-                  onboarding instructions. Message frequency varies, up to ~4 messages per month.
-                  Msg &amp; data rates may apply. Reply STOP to opt out. Reply HELP for help.
-                  Chiropractic Grit will not sell or share your phone number with third parties
-                  for marketing. See our <a href="/privacy">Privacy Policy</a> and
-                  <a href="/terms">Terms of Service</a>.
-                </span>
-              </label>
             </div>
 
             <button type="submit" class="submit-btn">Request Early Access</button>
