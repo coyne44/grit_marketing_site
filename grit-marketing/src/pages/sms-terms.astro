@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 
 <BaseLayout
   title="SMS Terms & Privacy | Chiropractic Grit"
-  description="SMS messaging terms of service and privacy policy for appointment reminders and notifications sent through Grit on behalf of healthcare providers."
+  description="SMS messaging terms and privacy for messages sent by Chiropractic Grit to its users (chiropractors and practice staff) about waitlist, onboarding, billing, and platform notifications."
 >
   <Nav />
 
@@ -18,128 +18,148 @@ import Footer from '../components/Footer.astro';
         <div class="kicker">SMS Terms & Privacy</div>
         <h1>SMS messaging terms.</h1>
         <p class="header-copy">
-          Grit sends SMS messages on behalf of chiropractic practices for appointment reminders,
-          confirmations, and practice notifications. This page describes how SMS messaging works,
-          how consent is collected, and your rights.
+          Chiropractic Grit sends SMS messages directly to its users (chiropractors and
+          practice staff) for waitlist updates, onboarding, billing, and platform
+          notifications. This page describes how SMS messaging works, how consent is
+          collected, and your rights.
         </p>
-        <p class="last-updated">Last updated: March 30, 2026</p>
+        <p class="last-updated">Last updated: May 7, 2026</p>
       </div>
 
       <!-- Content -->
       <div class="legal-content">
 
         <section>
-          <h2>1. What messages will I receive?</h2>
+          <h2>1. Who is the sender</h2>
           <p>
-            When you opt in to SMS notifications from your chiropractic practice, you may receive:
+            SMS messages on this program are sent by <strong>Chiropractic Grit LLC</strong>
+            (operator of the Chiropractic Grit practice management platform at
+            chiropracticgrit.com) directly to its prospective and active users — that is,
+            chiropractors and practice staff who have signed up for the waitlist or for
+            the platform.
           </p>
+          <p>
+            SMS messages on this program are <strong>not</strong> sent on behalf of any
+            chiropractic practice to any patient. Practice-to-patient SMS is a planned
+            feature; when it ships, each practice will register its own SMS sender with
+            the carriers and patient consent will be governed by that practice's own
+            consent record.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. What messages will I receive?</h2>
+          <p>When you opt in, you may receive:</p>
           <ul>
-            <li>Appointment reminders (e.g., "Your appointment is tomorrow at 2:00 PM")</li>
-            <li>Appointment confirmations and scheduling updates</li>
-            <li>Practice notifications (e.g., office closures, schedule changes)</li>
-            <li>Balance and billing notifications</li>
-            <li>Replies to messages you send to the practice</li>
+            <li>Waitlist updates and early-access invitations</li>
+            <li>Onboarding and account-setup instructions</li>
+            <li>Trial-status, billing, and subscription notifications</li>
+            <li>Platform status notices (downtime, campaign-registration updates, etc.)</li>
+            <li>Replies to messages you send to Chiropractic Grit support</li>
           </ul>
           <p>
-            Messages are sent on behalf of your healthcare provider's practice. Message frequency varies
-            based on your appointment schedule and practice communications.
+            Message frequency varies, typically up to four messages per month per recipient.
           </p>
         </section>
 
         <section>
-          <h2>2. How consent is collected</h2>
-          <p>
-            You will only receive SMS messages after providing your consent through one of the following methods:
-          </p>
+          <h2>3. How consent is collected</h2>
+          <p>You will only receive SMS messages after providing your consent through one of:</p>
           <ul>
-            <li><strong>Patient portal</strong> — Opting in through your account settings or during registration</li>
-            <li><strong>In-office</strong> — Providing written or verbal consent at your practice</li>
-            <li><strong>Text reply</strong> — Replying YES or START to a consent request</li>
+            <li><strong>Waitlist form</strong> — Checking the SMS consent box on chiropracticgrit.com/waitlist</li>
+            <li><strong>Account onboarding</strong> — Checking the SMS consent box during practice onboarding inside the Grit application</li>
+            <li><strong>Account settings</strong> — Enabling SMS notifications in your account preferences</li>
           </ul>
           <p>
-            Your consent is recorded with a timestamp and the method used. Consent is specific to the
-            practice you opted in with — opting in at one practice does not opt you in at another.
+            Your consent is recorded with a timestamp, the method used, and the phone
+            number you provided. We will not send you messages on this program through
+            any other channel.
           </p>
         </section>
 
         <section>
-          <h2>3. How to opt out</h2>
-          <p>
-            You can stop receiving SMS messages at any time by:
-          </p>
+          <h2>4. How to opt out</h2>
+          <p>You can stop receiving SMS messages at any time by:</p>
           <ul>
-            <li>Replying <strong>STOP</strong> to any message</li>
-            <li>Updating your preferences in your patient portal account</li>
-            <li>Contacting your practice directly</li>
+            <li>Replying <strong>STOP</strong> (or STOPALL, UNSUBSCRIBE, CANCEL, END, QUIT) to any message</li>
+            <li>Disabling SMS notifications in your account settings</li>
+            <li>Emailing <a href="mailto:support@chiropracticgrit.com">support@chiropracticgrit.com</a> with the subject line "Opt out"</li>
           </ul>
           <p>
-            After opting out, you will receive a single confirmation message and no further texts will
-            be sent. You can opt back in at any time by replying <strong>START</strong> or through your
-            patient portal.
-          </p>
-          <p>
-            Opting out of SMS does not affect your ability to use the secure patient portal or receive
-            in-app messages from your provider.
+            After opting out, you will receive a single confirmation message and no
+            further texts will be sent. You can opt back in at any time by re-enabling
+            SMS notifications in your account or contacting support.
           </p>
         </section>
 
         <section>
-          <h2>4. Help</h2>
+          <h2>5. Help</h2>
           <p>
-            Reply <strong>HELP</strong> to any message for assistance. You can also contact your practice
-            directly or email us at <a href="mailto:support@chiropracticgrit.com">support@chiropracticgrit.com</a>.
+            Reply <strong>HELP</strong> to any message for assistance. You can also
+            contact us at <a href="mailto:support@chiropracticgrit.com">support@chiropracticgrit.com</a>.
           </p>
         </section>
 
         <section>
-          <h2>5. Message & data rates</h2>
+          <h2>6. Message & data rates</h2>
           <p>
-            Message and data rates may apply depending on your mobile carrier and plan. Grit does not
-            charge patients for SMS messages, but your carrier's standard messaging rates apply.
+            Standard message and data rates may apply depending on your mobile carrier
+            and plan. Chiropractic Grit does not charge users for SMS messages, but your
+            carrier's standard messaging rates apply.
           </p>
         </section>
 
         <section>
-          <h2>6. Privacy & PHI</h2>
+          <h2>7. Privacy</h2>
           <p>
-            SMS messages sent through Grit are limited to non-clinical content. We do not send
-            protected health information (PHI) such as diagnoses, test results, or treatment details
-            via text message. For private medical communications, your provider uses the secure
-            patient portal.
+            Your phone number is stored securely and used only for the SMS message
+            categories described in section 2. Chiropractic Grit will not sell, rent, or
+            share your phone number with third parties for marketing purposes.
           </p>
           <p>
-            Your phone number is stored securely and is only used for practice communications
-            you have consented to. We do not sell, share, or use your phone number for marketing
-            purposes unrelated to your healthcare provider.
+            SMS messages are delivered by Telnyx under a data-protection agreement that
+            prohibits any use of your number outside of message delivery.
           </p>
         </section>
 
         <section>
-          <h2>7. Supported carriers</h2>
+          <h2>8. Supported carriers</h2>
           <p>
-            SMS messaging is supported on all major US carriers including AT&T, T-Mobile, Verizon,
-            and Sprint, as well as most regional carriers. Carriers are not liable for delayed or
-            undelivered messages.
+            SMS messaging is supported on all major US carriers including AT&T, T-Mobile,
+            and Verizon, as well as most regional carriers. Carriers are not liable for
+            delayed or undelivered messages.
           </p>
         </section>
 
         <section>
-          <h2>8. Changes to these terms</h2>
+          <h2>9. Practice-to-patient SMS (future feature)</h2>
           <p>
-            We may update these terms from time to time. Changes will be reflected on this page with
-            an updated date. Continued use of SMS services after changes constitutes acceptance of the
-            revised terms.
+            Patient-facing SMS sent by chiropractic practices through Grit is in
+            development and is not currently active. When that capability ships, each
+            practice will register its own SMS sender with the carriers under its own
+            legal entity, collect its own patient consent, and become the sender of
+            record for those messages. Separate terms governing patient consent, HIPAA
+            content rules, and TCPA obligations will be presented to practices and
+            patients at that time. Nothing in this document applies retroactively to
+            that future program.
+          </p>
+        </section>
+
+        <section>
+          <h2>10. Changes to these terms</h2>
+          <p>
+            We may update these terms from time to time. Changes will be reflected on
+            this page with an updated date. Continued use of SMS services after changes
+            constitutes acceptance of the revised terms.
           </p>
         </section>
 
         <section class="contact-section">
-          <h2>9. Contact</h2>
-          <p>
-            For questions about SMS messaging, privacy, or to request opt-out assistance:
-          </p>
+          <h2>11. Contact</h2>
+          <p>For questions about SMS messaging, privacy, or to request opt-out assistance:</p>
           <ul>
             <li>Email: <a href="mailto:support@chiropracticgrit.com">support@chiropracticgrit.com</a></li>
-            <li>Or contact your practice directly</li>
+            <li>Public CTA / disclosure page: <a href="/sms">chiropracticgrit.com/sms</a></li>
           </ul>
         </section>
 

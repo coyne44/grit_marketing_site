@@ -97,6 +97,19 @@ const ehrs = [
             </div>
 
             <div class="field">
+              <label for="phone">Phone Number <span class="optional">(optional)</span></label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="(555) 123-4567"
+                autocomplete="tel"
+                inputmode="numeric"
+                maxlength="14"
+              />
+            </div>
+
+            <div class="field">
               <label for="practice_name">Practice Name</label>
               <input type="text" id="practice_name" name="practice_name" placeholder="Smith Chiropractic" />
             </div>
@@ -146,6 +159,22 @@ const ehrs = [
               <textarea id="anything_else" name="anything_else" rows="3" placeholder="Feel free to share anything — features you need, frustrations with your current setup, questions…"></textarea>
             </div>
 
+            <div class="field consent-field">
+              <label class="consent-label">
+                <input type="checkbox" id="sms_consent" name="sms_consent" value="yes" />
+                <span class="consent-box-text">
+                  <strong>Text me waitlist updates from Chiropractic Grit.</strong>
+                  By checking this box, you agree to receive SMS messages from Chiropractic Grit
+                  about your waitlist status, early access invites, launch announcements, and
+                  onboarding instructions. Message frequency varies, up to ~4 messages per month.
+                  Msg &amp; data rates may apply. Reply STOP to opt out. Reply HELP for help.
+                  Chiropractic Grit will not sell or share your phone number with third parties
+                  for marketing. See our <a href="/privacy">Privacy Policy</a> and
+                  <a href="/terms">Terms of Service</a>.
+                </span>
+              </label>
+            </div>
+
             <button type="submit" class="submit-btn">Request Early Access</button>
 
             <p class="fine-print">No credit card required. We'll never spam you.</p>
@@ -170,9 +199,28 @@ const ehrs = [
 <script>
   const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
   const successState = document.getElementById('success-state');
+  const phoneInput = document.getElementById('phone') as HTMLInputElement | null;
+  const consentInput = document.getElementById('sms_consent') as HTMLInputElement | null;
+
+  phoneInput?.addEventListener('input', (e) => {
+    const target = e.target as HTMLInputElement;
+    const digits = target.value.replace(/\D/g, '').slice(0, 10);
+    let formatted = '';
+    if (digits.length > 0) formatted = '(' + digits.slice(0, 3);
+    if (digits.length >= 3) formatted += ') ' + digits.slice(3, 6);
+    if (digits.length >= 6) formatted += '-' + digits.slice(6, 10);
+    target.value = formatted;
+  });
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (consentInput?.checked && (phoneInput?.value.replace(/\D/g, '').length ?? 0) < 10) {
+      alert('Please enter a valid 10-digit phone number to receive SMS updates, or uncheck the SMS box.');
+      phoneInput?.focus();
+      return;
+    }
+
     const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
     btn.disabled = true;
     btn.textContent = 'Sending…';
@@ -353,6 +401,7 @@ const ehrs = [
 
   input[type="text"],
   input[type="email"],
+  input[type="tel"],
   textarea {
     background: rgba(0,0,0,0.18);
     border: 1px solid var(--line-strong);
@@ -376,6 +425,51 @@ const ehrs = [
   textarea:focus {
     border-color: var(--ember);
     background: rgba(0,0,0,0.26);
+  }
+
+  .optional {
+    color: var(--subtle);
+    font-weight: 400;
+  }
+
+  /* SMS consent block */
+  .consent-field {
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+    margin-top: 4px;
+  }
+
+  .consent-label {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: start;
+    cursor: pointer;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .consent-label input[type="checkbox"] {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--ember);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .consent-box-text strong {
+    color: var(--text);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .consent-box-text a {
+    color: var(--ember);
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   textarea {

@@ -54,6 +54,7 @@ import Footer from '../components/Footer.astro';
             <li>Billing information (processed by our payment processor — we do not store card numbers)</li>
             <li>Schedule, time-off, and clinical note preferences</li>
             <li>Usage data such as logins, features used, and actions taken in the platform</li>
+            <li>SMS consent status and opt-in/opt-out history (when you opt in to receive SMS notifications from Grit)</li>
           </ul>
           <p><strong>From patients (via the patient portal or practice data entry):</strong></p>
           <ul>
@@ -61,8 +62,6 @@ import Footer from '../components/Footer.astro';
             <li>Appointment history</li>
             <li>Clinical notes and SOAP documentation entered by providers</li>
             <li>Billing balances and payment activity</li>
-            <li>SMS consent status and opt-in/opt-out history</li>
-            <li>Messages sent and received through the platform</li>
           </ul>
           <p><strong>Automatically collected:</strong></p>
           <ul>
@@ -78,7 +77,7 @@ import Footer from '../components/Footer.astro';
           </p>
           <ul>
             <li>Provide, operate, and improve the Grit platform</li>
-            <li>Send appointment reminders and notifications on behalf of your practice</li>
+            <li>Send SMS notifications to you about your Grit account (waitlist updates, onboarding, billing, platform status) when you have opted in</li>
             <li>Process payments and manage your subscription</li>
             <li>Respond to support requests and account issues</li>
             <li>Detect and prevent fraud, abuse, and security incidents</li>
@@ -111,20 +110,27 @@ import Footer from '../components/Footer.astro';
         </section>
 
         <section>
-          <h2>5. SMS messaging & consumer data</h2>
+          <h2>5. SMS messaging</h2>
           <p>
-            When a practice uses Grit's SMS features, patient phone numbers are used solely to
-            send messages the patient has consented to receive from that practice.
+            Chiropractic Grit collects mobile phone numbers from prospective and active
+            users (chiropractors, practice staff) only when those users explicitly
+            opt in to receive SMS messages — either by checking the SMS consent box on
+            the waitlist form, by opting in during account onboarding, or by enabling
+            SMS notifications in account settings.
           </p>
           <ul>
-            <li>Phone numbers are never sold or shared with third-party marketers</li>
-            <li>Phone numbers are not used for any purpose outside of practice communications</li>
-            <li>SMS consent is recorded per patient, per practice</li>
-            <li>Opt-out requests (STOP) are honored immediately and permanently until the patient opts back in</li>
+            <li>Phone numbers are used solely to send the SMS message categories described in our <a href="/terms">Terms of Service</a> (waitlist, onboarding, billing, platform notices).</li>
+            <li>Phone numbers are <strong>never</strong> sold, rented, or shared with third-party marketers.</li>
+            <li>SMS consent is recorded with a timestamp, the consent method, and the number provided.</li>
+            <li>Opt-out requests (replying STOP to any message, or contacting support) are honored immediately and recorded permanently.</li>
+            <li>The third party that delivers SMS messages on our behalf is Telnyx, bound to a data-protection agreement and not authorized to use the data for any other purpose.</li>
           </ul>
           <p>
-            For full details on SMS messaging, see our
-            <a href="/sms-terms">SMS Terms &amp; Conditions</a>.
+            Practice-to-patient SMS messaging via Grit is not yet available. When that
+            feature ships, each practice will be the sender of record for its own
+            patient communications, and patient phone numbers will be governed by the
+            practice's own SMS consent record. See our
+            <a href="/sms-terms">SMS Terms &amp; Privacy</a> for full details.
           </p>
         </section>
 
