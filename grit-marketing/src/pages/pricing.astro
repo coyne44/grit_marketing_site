@@ -48,11 +48,22 @@ const faqs = [
     a: "Grit is built for solo chiropractors and small independent practices. If you're running a larger multi-provider operation, it may not be the right fit — yet.",
   },
 ];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.q,
+    acceptedAnswer: { '@type': 'Answer', text: faq.a },
+  })),
+};
 ---
 
 <BaseLayout
-  title="Pricing | Chiropractic Grit"
-  description="Simple, transparent pricing for solo chiropractors. One plan, everything included. No per-provider fees, no surprises."
+  title="Pricing — $49/mo Chiropractic EHR, No Contract | Chiropractic Grit"
+  description="Grit is $49/month, all-inclusive — SOAP notes, scheduling, patient portal, messaging, text reminders, and payments. No setup fees, no per-provider charges, no contract. Built for solo, cash-pay chiropractors."
+  schema={faqSchema}
 >
   <Nav />
 
@@ -75,7 +86,7 @@ const faqs = [
           <div class="pricing-left">
             <div class="plan-name">Grit Pro</div>
             <div class="price">
-              <span class="amount">$99</span>
+              <span class="amount">$49</span>
               <span class="period">/ month</span>
             </div>
             <p class="plan-desc">
@@ -140,7 +151,7 @@ const faqs = [
       <div class="bottom-cta">
         <h2>Still have questions?</h2>
         <p>We're happy to walk you through anything before you commit.</p>
-        <a class="ghost-btn" href="mailto:hello@gritcrm.com">Get in touch</a>
+        <a class="ghost-btn" href="mailto:hello@chiropracticgrit.com">Get in touch</a>
       </div>
 
     </div>

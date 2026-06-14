@@ -5,16 +5,66 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  /** Optional extra JSON-LD objects to inject (e.g. FAQPage, Article, BreadcrumbList). */
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
-  title = 'Grit — Modern EHR for Solo Chiropractors',
-  description = 'Scheduling, SOAP notes, patient portal, and secure messaging. One simple tool built for the solo chiropractor.',
+  title = 'Grit — Chiropractic EHR for Solo, Cash-Pay Practices · $49/mo',
+  description = 'Grit is a modern, chiropractic-specific EHR built for solo and cash-pay chiropractors. SOAP notes, scheduling, patient portal, secure messaging, and text reminders — everything you need, $49/month, no contract.',
   ogImage = '/og-image.png',
+  schema,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://gritcrm.com');
+const SITE = Astro.site ?? new URL('https://chiropracticgrit.com');
+const canonicalURL = new URL(Astro.url.pathname, SITE);
 const fullTitle = title.includes('Grit') ? title : `${title} | Chiropractic Grit`;
+const ogImageURL = new URL(ogImage, SITE);
+
+// Site-wide structured data: helps Google recognize the brand entity (directly
+// aids "chiropractic grit" brand search) and surface the product as software.
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Chiropractic Grit',
+  alternateName: 'Grit',
+  url: SITE.href,
+  logo: new URL('/favicon.svg', SITE).href,
+  description:
+    'Modern, chiropractic-specific EHR and practice-management software built for solo, cash-pay chiropractors.',
+  email: 'hello@chiropracticgrit.com',
+  sameAs: [
+    'https://www.linkedin.com/company/chiropractic-grit',
+    'https://www.youtube.com/@chiropracticgrit',
+    'https://www.instagram.com/chiropracticgrit',
+  ],
+};
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Grit',
+  applicationCategory: 'HealthApplication',
+  applicationSubCategory: 'Chiropractic EHR & Practice Management',
+  operatingSystem: 'Web, iOS, Android',
+  url: SITE.href,
+  description:
+    'Chiropractic EHR for solo and cash-pay practices: SOAP notes, scheduling, patient portal, secure messaging, text reminders, and Stripe payments. HIPAA compliant with BAA included.',
+  offers: {
+    '@type': 'Offer',
+    price: '49.00',
+    priceCurrency: 'USD',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: '49.00',
+      priceCurrency: 'USD',
+      unitText: 'MONTH',
+    },
+  },
+};
+
+const extraSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const allSchemas = [organizationSchema, softwareSchema, ...extraSchemas];
 ---
 
 <html lang="en">
@@ -32,14 +82,19 @@ const fullTitle = title.includes('Grit') ? title : `${title} | Chiropractic Grit
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content="Chiropractic Grit" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Structured data -->
+    {allSchemas.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />

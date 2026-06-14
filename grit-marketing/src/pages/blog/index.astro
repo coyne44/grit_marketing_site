@@ -1,0 +1,123 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<BaseLayout
+  title="The Grit Blog — Cash Practice, Pricing & Software for Solo Chiropractors"
+  description="Honest, practical writing for solo and cash-pay chiropractors: what EHRs really cost, how to start a cash practice, and choosing software that's actually built for chiropractic."
+>
+  <Nav />
+  <main class="page">
+    <div class="container">
+      <div class="page-header">
+        <div class="kicker">The Grit Blog</div>
+        <h1>Built for chiropractors going it alone.</h1>
+        <p class="header-copy">
+          Honest writing for solo and cash-pay chiropractors — what software actually costs,
+          how to open a practice without drowning in overhead, and how to choose tools built
+          for chiropractic instead of against it.
+        </p>
+      </div>
+
+      {posts.length === 0 ? (
+        <p class="empty">New articles are on the way.</p>
+      ) : (
+        <ul class="post-list">
+          {posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}`}>
+                <div class="card-top">
+                  <span class="cat">{post.data.category}</span>
+                  <time datetime={post.data.pubDate.toISOString()}>{fmt(post.data.pubDate)}</time>
+                </div>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+                <span class="read">Read article →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page { padding: 52px 0 84px; }
+  .page-header { max-width: 680px; margin-bottom: 48px; display: grid; gap: 14px; }
+  .kicker {
+    color: var(--ember);
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    margin: 0;
+  }
+  .header-copy { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin: 0; }
+  .empty { color: var(--muted); }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .post-list a {
+    display: grid;
+    gap: 10px;
+    height: 100%;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.026), rgba(255,255,255,0.014));
+    transition: 180ms ease;
+  }
+  .post-list a:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--subtle);
+    font-size: 0.82rem;
+  }
+  .cat {
+    color: var(--ember);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+  }
+  .post-list h2 {
+    font-size: 1.3rem;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+  .post-list p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin: 0; }
+  .read { color: var(--text); font-weight: 700; font-size: 0.9rem; margin-top: 4px; }
+
+  @media (max-width: 760px) {
+    .post-list { grid-template-columns: 1fr; }
+  }
+</style>
