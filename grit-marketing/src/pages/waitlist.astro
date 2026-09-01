@@ -2,7 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { PRICING } from '../lib/site';
+import { PRICING, TAGLINE } from '../lib/site';
+import Wordmark from '../components/ui/Wordmark.astro';
 
 // INVARIANTS (cited by /sms as the TCR opt-in evidence; wired to Formspree):
 // form action + method, every field name, the sms_consent checkbox and its
@@ -69,11 +70,7 @@ const ehrs = [
           </ul>
 
           <div class="brand-badge">
-            <div class="brand-mark">G</div>
-            <div class="brand-text">
-              <small>CHIROPRACTIC</small>
-              <span>GRIT</span>
-            </div>
+            <Wordmark size="1.45rem" sub={TAGLINE} />
           </div>
         </div>
 
@@ -325,44 +322,8 @@ const ehrs = [
   .brand-badge {
     display: flex;
     align-items: center;
-    gap: 12px;
     border-top: 1px solid var(--line);
     padding-top: 28px;
-  }
-
-  .brand-mark {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-sm);
-    background: var(--ember);
-    display: grid;
-    place-items: center;
-    color: #fff;
-    font-family: var(--font-mono);
-    font-size: 1rem;
-    font-weight: 700;
-  }
-
-  .brand-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-    font-family: var(--font-mono);
-  }
-
-  .brand-text small {
-    font-size: 0.56rem;
-    letter-spacing: 0.3em;
-    color: var(--subtle);
-    margin-bottom: 4px;
-    font-weight: 600;
-  }
-
-  .brand-text span {
-    font-size: 0.98rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    color: var(--text);
   }
 
   /* Form card — the paper panel */
