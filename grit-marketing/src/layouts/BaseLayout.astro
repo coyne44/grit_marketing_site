@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { PRICING, CONTACT_EMAIL, TAGLINE } from '../lib/site';
 
 interface Props {
   title?: string;
@@ -10,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = 'Grit — Chiropractic EHR for Solo, Cash-Pay Practices · $49/mo',
-  description = 'Grit is a modern, chiropractic-specific EHR built for solo and cash-pay chiropractors. SOAP notes, scheduling, patient portal, secure messaging, and text reminders — everything you need, $49/month, no contract.',
+  title = `Grit — Chiropractic EHR · ${TAGLINE}`,
+  description = `Grit is a modern, chiropractic-specific EHR for independent chiropractors: scheduling, SOAP notes, care plans, patient payments, text reminders, secure messaging, and optional insurance billing. $${PRICING.base}/month — one provider, unlimited staff accounts.`,
   ogImage = '/og-image.png',
   schema,
 } = Astro.props;
@@ -31,13 +32,8 @@ const organizationSchema = {
   url: SITE.href,
   logo: new URL('/favicon.svg', SITE).href,
   description:
-    'Modern, chiropractic-specific EHR and practice-management software built for solo, cash-pay chiropractors.',
-  email: 'hello@chiropracticgrit.com',
-  sameAs: [
-    'https://www.linkedin.com/company/chiropractic-grit',
-    'https://www.youtube.com/@chiropracticgrit',
-    'https://www.instagram.com/chiropracticgrit',
-  ],
+    'Modern, chiropractic-specific EHR and practice-management software built for independent chiropractors.',
+  email: CONTACT_EMAIL,
 };
 
 const softwareSchema = {
@@ -46,17 +42,19 @@ const softwareSchema = {
   name: 'Grit',
   applicationCategory: 'HealthApplication',
   applicationSubCategory: 'Chiropractic EHR & Practice Management',
-  operatingSystem: 'Web, iOS, Android',
+  operatingSystem: 'Web',
   url: SITE.href,
   description:
-    'Chiropractic EHR for solo and cash-pay practices: SOAP notes, scheduling, patient portal, secure messaging, text reminders, and Stripe payments. HIPAA compliant with BAA included.',
+    `Chiropractic EHR for independent practices: SOAP notes, scheduling, care plans, patient portal, secure messaging, text reminders, and patient payments. Optional insurance billing add-on. HIPAA compliant with BAA included.`,
   offers: {
     '@type': 'Offer',
-    price: '49.00',
+    name: 'Grit Base',
+    description: `$${PRICING.base}/month — one provider, unlimited staff accounts, everything included. Additional providers $${PRICING.perProvider}/month each; optional insurance billing add-on $${PRICING.insuranceAddon}/month.`,
+    price: PRICING.base.toFixed(2),
     priceCurrency: 'USD',
     priceSpecification: {
       '@type': 'UnitPriceSpecification',
-      price: '49.00',
+      price: PRICING.base.toFixed(2),
       priceCurrency: 'USD',
       unitText: 'MONTH',
     },
@@ -100,7 +98,7 @@ const allSchemas = [organizationSchema, softwareSchema, ...extraSchemas];
     <link rel="icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <slot />
