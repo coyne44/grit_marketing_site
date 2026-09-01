@@ -1,0 +1,135 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import { PRICING } from '../../lib/site';
+
+const items = [
+  {
+    name: 'Scheduling',
+    copy: 'Your week at a glance, with online self-booking your patients can actually use.',
+  },
+  {
+    name: 'SOAP notes',
+    copy: 'Macro-fast notes that know the spine — and check the segments against the codes before you sign.',
+  },
+  {
+    name: 'Care plans',
+    copy: 'Build the plan once, schedule the visits, watch the progress.',
+  },
+  {
+    name: 'Patient payments',
+    copy: 'Card at the desk or in the portal — saved cards, receipts, running balances.',
+  },
+  {
+    name: 'Text & email reminders',
+    copy: "Automatic, consent-aware, and sent in your practice's time zone.",
+  },
+  {
+    name: 'Patient portal',
+    copy: 'Booking, intake forms, messages, and bills — patients handle their own.',
+  },
+  {
+    name: 'Secure messaging',
+    copy: "Patient conversations that don't live on your personal phone.",
+  },
+  {
+    name: 'Insurance billing',
+    copy: 'Submit claims from a signed note, track every one, post payments when they land.',
+    addon: true,
+  },
+];
+---
+
+<section class="proof container">
+  <SectionHeader
+    kicker={`What $${PRICING.base} includes`}
+    title="The whole practice, in one place."
+    copy="One provider. Unlimited staff accounts. Everything below is the base price."
+  />
+  <div class="grid">
+    {items.map((item) => (
+      <article>
+        <h3>
+          {item.name}
+          {item.addon && <span class="chip">+${PRICING.insuranceAddon}/mo add-on</span>}
+        </h3>
+        <p>{item.copy}</p>
+      </article>
+    ))}
+  </div>
+  <a class="more" href="/features">Every feature, in detail →</a>
+</section>
+
+<style>
+  .proof {
+    padding: 96px 0 20px;
+    display: grid;
+    gap: 44px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px 32px;
+  }
+
+  article {
+    border-top: 1px solid var(--line-strong);
+    padding-top: 16px;
+    display: grid;
+    gap: 8px;
+    align-content: start;
+  }
+
+  h3 {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ember-strong);
+    border: 1px solid rgba(229, 106, 32, 0.4);
+    border-radius: 999px;
+    padding: 2px 9px;
+    white-space: nowrap;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .more {
+    justify-self: start;
+    color: var(--ember-strong);
+    font-weight: 600;
+    transition: color var(--dur) var(--ease);
+  }
+
+  .more:hover {
+    color: var(--text);
+  }
+
+  @media (max-width: 1000px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+  }
+</style>
