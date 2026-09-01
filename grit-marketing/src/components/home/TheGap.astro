@@ -32,6 +32,7 @@ import { PRICING } from '../../lib/site';
       </p>
     </article>
   </div>
+  <a class="more" href="/compare/">See the honest comparisons →</a>
 </section>
 
 <style>
@@ -71,6 +72,17 @@ import { PRICING } from '../../lib/site';
     margin: 0;
     line-height: 1.65;
     color: var(--muted);
+  }
+
+  .more {
+    justify-self: start;
+    color: var(--ember-strong);
+    font-weight: 600;
+    transition: color var(--dur) var(--ease);
+  }
+
+  .more:hover {
+    color: var(--text);
   }
 
   @media (max-width: 800px) {

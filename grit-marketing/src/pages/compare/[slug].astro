@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import FaqList from '../../components/ui/FaqList.astro';
+import WaitlistCTA from '../../components/ui/WaitlistCTA.astro';
 
 interface Row { label: string; grit: string; them: string; }
 interface Faq { q: string; a: string; }
@@ -19,90 +21,95 @@ interface Comparison {
   faqs: Faq[];
 }
 
+// Competitor prices are public-report estimates, marked (est.) — re-verify
+// against current published pricing before major campaigns.
 export function getStaticPaths() {
   const comparisons: Comparison[] = [
   {
     slug: 'grit-vs-chirotouch',
-    title: 'Grit vs ChiroTouch — A $49 Chiropractic EHR for Solo Practices',
+    title: 'Grit vs ChiroTouch — A $49 Chiropractic EHR for Independent Practices',
     description:
-      'Comparing Grit and ChiroTouch for solo and cash-pay chiropractors: price, setup fees, features, and who each one is actually built for.',
+      'Comparing Grit and ChiroTouch for independent chiropractors: price, setup fees, insurance billing, and who each one is actually built for.',
     kicker: 'Grit vs ChiroTouch',
     h1: 'Grit vs ChiroTouch',
     intro:
-      "ChiroTouch is a powerful, full-featured EHR built for established and multi-provider clinics that bill insurance heavily. Grit is built for the opposite practice: the solo, cash-forward chiropractor who wants exactly what they need at a price that makes sense in year one. Here's an honest comparison.",
+      "ChiroTouch is a powerful, full-featured EHR built for established and multi-location clinics. Grit is built for the independent practice: modern, chiropractic-specific, and priced at cost. Here's an honest comparison.",
     themName: 'ChiroTouch',
     rows: [
-      { label: 'Best for', grit: 'Solo & cash-pay practices', them: 'Established / multi-provider clinics' },
-      { label: 'Starting price', grit: '$49/mo, all-inclusive', them: '~$159–$299/mo (est.)' },
+      { label: 'Best for', grit: 'Independent practices', them: 'Large & multi-location clinics' },
+      { label: 'Starting price', grit: '$49/mo + $20/mo per additional provider', them: '~$159–$299/mo (est.)' },
       { label: 'Setup fee', grit: '$0', them: 'Often four figures' },
+      { label: 'Staff accounts', grit: 'Unlimited, included', them: 'Varies by plan' },
       { label: 'Text reminders', grit: 'Included', them: 'Often a paid add-on' },
       { label: 'Contract', grit: 'Month-to-month', them: 'Typically term commitment' },
-      { label: 'Insurance claim submission', grit: 'No (cash-forward focus)', them: 'Yes' },
+      { label: 'Insurance claim submission', grit: 'Optional +$20/mo add-on (your own Claim.MD account)', them: 'Yes' },
       { label: 'Built for chiropractic', grit: 'Yes', them: 'Yes' },
       { label: 'Modern, mobile-first interface', grit: 'Yes', them: 'Legacy in places' },
     ],
     themBest:
-      'If your practice bills a lot of insurance and needs claim submission, ERA posting, and multi-provider management, ChiroTouch (or another insurance-first EHR) is likely the better fit — that infrastructure is the point.',
+      "If you run a large or multi-location clinic that leans on implementation services, on-site training, and an integration ecosystem built up over decades, ChiroTouch's scale is the point — and can be worth its price.",
     gritBest:
-      "If you're solo and cash-forward, Grit gives you scheduling, chiropractic SOAP notes, a patient portal, secure messaging, text reminders, and payments for $49/month — without the setup fee, the contract, or the features you'll never open.",
+      "If you're an independent chiropractor, Grit gives you a modern, chiropractic-specific system — notes, scheduling, portal, reminders, payments, and optional insurance billing — for $49 a month, without the setup fee or the contract.",
     faqs: [
-      { q: 'Is Grit cheaper than ChiroTouch?', a: 'Yes. Grit is $49/month all-inclusive with no setup fee. ChiroTouch entry pricing is publicly reported around $159/month and up, often with setup and add-on fees on top.' },
-      { q: 'Does Grit do insurance billing like ChiroTouch?', a: 'No. Grit is built for cash-forward practices and generates superbills for patients to self-submit, but it does not submit insurance claims. If insurance billing is central to your practice, ChiroTouch is a better fit.' },
-      { q: 'Can I switch from ChiroTouch to Grit?', a: 'We work with you directly on data migration during onboarding. Reach out and we will map out the best path for your records.' },
+      { q: 'Is Grit cheaper than ChiroTouch?', a: 'Yes. Grit is $49/month for one provider with unlimited staff accounts, plus $20/month per additional provider, with no setup fee. ChiroTouch entry pricing is publicly reported around $159/month and up, often with setup and add-on fees on top.' },
+      { q: 'Does Grit do insurance billing like ChiroTouch?', a: 'Yes — as an optional $20/month add-on. Claims are generated from signed notes, checked against payer-aware rules before submission, tracked, and posted inside Grit, through your own Claim.MD clearinghouse account. Cash-forward practices can skip it and use superbills.' },
+      { q: 'Can I switch from ChiroTouch to Grit?', a: 'Yes. Grit imports patients, insurance, and appointments from CSV or Excel exports, with a dry-run preview before anything is written — and we help you through the move.' },
     ],
   },
   {
     slug: 'grit-vs-jane',
     title: 'Grit vs Jane App — Chiropractic-Specific vs Multi-Discipline',
     description:
-      'Comparing Grit and Jane for chiropractors: Jane is a beautiful multi-discipline platform; Grit is purpose-built for solo, cash-pay chiropractic. Here is how they differ.',
+      'Comparing Grit and Jane for chiropractors: Jane is a beautiful multi-discipline platform; Grit is purpose-built for independent chiropractic. Here is how they differ.',
     kicker: 'Grit vs Jane',
     h1: 'Grit vs Jane App',
     intro:
-      "Jane is a well-loved, beautifully designed platform used across physio, massage, mental health, and chiropractic. That breadth is its strength — and its constraint. Grit does one thing: chiropractic, for the solo practitioner. Here's how to choose.",
+      "Jane is a well-loved, beautifully designed platform used across physio, massage, mental health, and chiropractic. That breadth is its strength — and its constraint. Grit does one thing: chiropractic, for the independent practice. Here's how to choose.",
     themName: 'Jane',
     rows: [
-      { label: 'Best for', grit: 'Solo chiropractors specifically', them: 'Multi-discipline allied health clinics' },
-      { label: 'Starting price', grit: '$49/mo, all-inclusive', them: '~$54/mo base (and up)' },
+      { label: 'Best for', grit: 'Independent chiropractors specifically', them: 'Multi-discipline allied health clinics' },
+      { label: 'Starting price', grit: '$49/mo + $20/mo per additional provider', them: '~$54/mo base, per practitioner (est.)' },
       { label: 'Chiropractic-specific workflows', grit: 'Built around them', them: 'Generalized across disciplines' },
       { label: 'Chiropractic SOAP / spinal charting', grit: 'Purpose-built', them: 'Customizable, but not chiro-first' },
+      { label: 'Staff accounts', grit: 'Unlimited, included', them: 'Varies by plan' },
       { label: 'Text reminders', grit: 'Included', them: 'Available' },
       { label: 'Contract', grit: 'Month-to-month', them: 'Month-to-month' },
-      { label: 'Insurance claim submission', grit: 'No (cash-forward focus)', them: 'Varies by region' },
+      { label: 'Insurance claim submission', grit: 'Optional +$20/mo add-on (your own Claim.MD account)', them: 'Varies by region' },
     ],
     themBest:
-      'If you run a multi-discipline clinic — or you want one of the most polished general-purpose platforms in allied health — Jane is an excellent choice and hard to beat on breadth.',
+      'If you run a multi-discipline clinic — or you want one of the most polished general-purpose platforms in allied health, with the community and ecosystem that come with it — Jane is an excellent choice and hard to beat on breadth.',
     gritBest:
-      "If you're a solo chiropractor who wants software that speaks chiropractic natively — and a lower, simpler price — Grit is built for exactly you, and only you.",
+      "If you're an independent chiropractor who wants software that speaks chiropractic natively — spine-level notes, chiropractic billing rules, and insurance as an option instead of an architecture — Grit is built for exactly you, and only you.",
     faqs: [
-      { q: 'Is Jane good for chiropractors?', a: 'Jane works for chiropractors and many use it happily. Because it spans many disciplines, though, its clinical workflow is generalized rather than chiropractic-first. Grit is built specifically for chiropractic.' },
-      { q: 'Is Grit cheaper than Jane?', a: 'Grit is $49/month all-inclusive. Jane starts around $54/month for its base plan and rises with usage and add-ons.' },
+      { q: 'Is Jane good for chiropractors?', a: 'Jane works for chiropractors and many use it happily. Because it spans many disciplines, its clinical workflow is generalized rather than chiropractic-first. Grit is built specifically for chiropractic.' },
+      { q: 'Is Grit cheaper than Jane?', a: 'Grit is $49/month for one provider with unlimited staff accounts, plus $20/month per additional provider. Jane starts around $54/month per practitioner and rises with usage and add-ons.' },
+      { q: 'Does Grit handle insurance like Jane does?', a: 'Grit offers insurance billing as an optional $20/month add-on — claims from signed notes, payer-aware pre-submission checks, status tracking, and payment posting, through your own Claim.MD account.' },
     ],
   },
   {
     slug: 'chirotouch-alternatives',
-    title: 'ChiroTouch Alternatives for Solo & Cash-Pay Chiropractors (2026)',
+    title: 'ChiroTouch Alternatives for Independent Chiropractors (2026)',
     description:
-      'Looking for a ChiroTouch alternative that fits a solo, cash-forward practice? Here is an honest look at the options — and where a focused $49/mo chiropractic EHR fits.',
+      'Looking for a ChiroTouch alternative that fits an independent practice? An honest look at the options — and where a modern, $49/mo chiropractic EHR fits.',
     kicker: 'ChiroTouch alternatives',
-    h1: 'ChiroTouch Alternatives for Solo & Cash Practices',
+    h1: 'ChiroTouch Alternatives for Independent Practices',
     intro:
-      "ChiroTouch is built for clinics that bill insurance and need the full enterprise toolset. If you're a solo or cash-forward chiropractor, you may be paying for a lot you never use. Here are the realistic alternatives, and how to think about the trade-offs.",
-    themName: 'ChiroTouch',
+      "ChiroTouch is built for clinics that need the full enterprise toolset. If you're an independent chiropractor, you may be paying clinic-scale prices for capacity you never use. Here are the realistic alternatives, and how to think about the trade-offs.",
+    themName: 'The trade-off',
     rows: [
-      { label: 'Grit', grit: '$49/mo · solo & cash-pay · chiropractic-specific · no contract', them: 'No insurance claim submission' },
-      { label: 'Jane', grit: '~$54/mo · polished · multi-discipline', them: 'Not chiropractic-first' },
-      { label: 'ChiroFusion', grit: '~$129/mo · built-in clearinghouse', them: 'Assumes insurance billing; dated UX' },
-      { label: 'Pure Chiro Notes', grit: '~$149/mo · cash/membership focus', them: 'Higher price for similar focus' },
+      { label: 'Grit', grit: '$49/mo + $20/provider · chiropractic-specific · modern · insurance optional (+$20/mo) · no contract', them: 'The newest entrant — no decades-long track record yet' },
+      { label: 'Jane', grit: '~$54/mo per practitioner (est.) · polished · multi-discipline', them: 'Not chiropractic-first' },
+      { label: 'ChiroFusion', grit: '~$129/mo (est.) · built-in clearinghouse', them: 'Assumes insurance billing; dated UX' },
+      { label: 'Pure Chiro Notes', grit: '~$149/mo (est.) · cash/membership focus', them: 'Higher price for a narrower focus' },
     ],
     themBest:
-      'Stay with ChiroTouch (or another insurance-first system) if your practice depends on claim submission, ERA posting, or multi-provider management. That is what you are paying for, and it is worth it when you use it.',
+      "Stay with ChiroTouch (or another enterprise system) if your clinic leans on its implementation services, its integration ecosystem, or multi-location management. That's what the price buys, and it's worth it when you use it.",
     gritBest:
-      "If you're cash-forward and solo, Grit is the focused, modern, $49/month alternative: chiropractic SOAP notes, scheduling, patient portal, messaging, text reminders, and payments — no setup fee, no contract.",
+      "If you're independent, Grit is the focused, modern alternative: chiropractic SOAP notes, scheduling, patient portal, messaging, text reminders, payments, and optional insurance billing — $49/month, no setup fee, no contract.",
     faqs: [
-      { q: 'What is the cheapest ChiroTouch alternative?', a: 'Among purpose-built chiropractic options, Grit at $49/month all-inclusive is below the typical entry price of chiropractic-specific EHRs. Generic wellness tools can be cheaper but are not chiropractic-specific.' },
-      { q: 'Why do people look for a ChiroTouch alternative?', a: 'Common reasons include price (entry plans around $159/month plus setup and add-on fees), contract commitments, and paying for insurance-billing features a cash practice does not use.' },
-      { q: 'Is there a ChiroTouch alternative built for cash practices?', a: 'Yes. Grit is built specifically for solo, cash-forward chiropractors, with superbills for patient self-submission rather than full insurance claim processing.' },
+      { q: 'What is the cheapest ChiroTouch alternative?', a: 'Among purpose-built chiropractic options, Grit at $49/month (one provider, unlimited staff accounts) sits below the typical entry price of chiropractic-specific EHRs. Generic wellness tools can be cheaper but are not chiropractic-specific.' },
+      { q: 'Why do people look for a ChiroTouch alternative?', a: 'Common reasons include price (entry plans reported around $159/month plus setup and add-on fees), contract commitments, and paying for enterprise capacity a small practice never opens.' },
+      { q: 'Is there a ChiroTouch alternative built for independent practices?', a: 'Yes. Grit is built specifically for the independent chiropractor — modern and chiropractic-specific, with insurance billing as an optional $20/month add-on instead of the whole architecture.' },
     ],
   },
   ];
@@ -127,11 +134,12 @@ const faqSchema = {
   <Nav />
   <main class="page">
     <div class="container">
-      <div class="page-header">
-        <div class="kicker">{c.kicker}</div>
+      <header class="page-header">
+        <a class="back" href="/compare/">← All comparisons</a>
+        <div class="rule"><span class="kicker">{c.kicker}</span></div>
         <h1>{c.h1}</h1>
         <p class="header-copy">{c.intro}</p>
-      </div>
+      </header>
 
       <div class="table-wrap">
         <table>
@@ -155,130 +163,193 @@ const faqSchema = {
       </div>
 
       <div class="honest">
-        <div class="honest-card">
+        <article class="honest-them">
           <h2>When the other option wins</h2>
           <p>{c.themBest}</p>
-        </div>
-        <div class="honest-card grit">
+        </article>
+        <article class="honest-grit paper">
           <h2>When Grit is the better fit</h2>
           <p>{c.gritBest}</p>
-        </div>
+        </article>
       </div>
 
-      <div class="faq-section">
-        <div class="kicker">FAQ</div>
-        <h2 class="faq-title">Common questions.</h2>
-        <div class="faq-grid">
-          {c.faqs.map((f) => (
-            <div class="faq-item">
-              <h3>{f.q}</h3>
-              <p>{f.a}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div class="bottom-cta">
-        <h2>See it for yourself.</h2>
-        <p>A modern chiropractic EHR for solo, cash-pay practices — $49/month, no contract.</p>
-        <a class="cta-btn" href="/waitlist">Join the Waitlist</a>
-        <p class="no-card">No credit card required</p>
-      </div>
+      <section class="faq-section">
+        <div class="rule"><span class="kicker">Common questions</span></div>
+        <FaqList faqs={c.faqs} />
+      </section>
     </div>
   </main>
+
+  <WaitlistCTA
+    kicker="Early access"
+    title="See it for yourself."
+    copy="A modern chiropractic EHR for independent practices — $49/month, no contract. We'll reach out before launch."
+  />
+
   <Footer />
 </BaseLayout>
 
 <style>
-  .page { padding: 52px 0 84px; }
-  .page-header { max-width: 720px; margin-bottom: 44px; display: grid; gap: 14px; }
-  .kicker {
-    color: var(--ember);
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    font-size: 0.78rem;
-    text-transform: uppercase;
+  .page {
+    padding: 52px 0 20px;
   }
+
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: 560px;
+  }
+
+  .rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  .page-header {
+    max-width: 760px;
+    margin-bottom: 48px;
+    display: grid;
+    gap: 16px;
+  }
+
+  .back {
+    color: var(--subtle);
+    font-size: 0.88rem;
+    transition: color var(--dur) var(--ease);
+  }
+
+  .back:hover {
+    color: var(--ember-strong);
+  }
+
   h1 {
-    font-size: clamp(2.2rem, 4.4vw, 3.4rem);
-    line-height: 1.03;
-    letter-spacing: -0.045em;
+    font-size: clamp(2.2rem, 4.4vw, 3.2rem);
+    line-height: 1.04;
+  }
+
+  .header-copy {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
     margin: 0;
   }
-  .header-copy { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin: 0; }
 
-  .table-wrap { overflow-x: auto; margin-bottom: 56px; }
-  table { width: 100%; border-collapse: collapse; min-width: 560px; }
-  th, td {
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: 64px;
     border: 1px solid var(--line);
-    padding: 14px 16px;
+    border-radius: var(--radius);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 620px;
+  }
+
+  th,
+  td {
+    border-bottom: 1px solid var(--line);
+    padding: 15px 18px;
     text-align: left;
     font-size: 0.95rem;
     vertical-align: top;
   }
-  thead th { color: var(--text); font-weight: 800; font-size: 1rem; }
-  .label { color: var(--subtle); font-weight: 600; }
-  td { color: var(--muted); }
-  .grit-col { color: var(--text); background: rgba(199, 78, 14, 0.07); }
-  thead .grit-col { color: var(--ember); }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  thead th {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  .label {
+    color: var(--subtle);
+    font-weight: 600;
+    width: 22%;
+  }
+
+  td {
+    color: var(--muted);
+  }
+
+  .grit-col {
+    color: var(--text);
+    background: rgba(199, 78, 14, 0.08);
+  }
+
+  thead .grit-col {
+    color: var(--ember-strong);
+    font-family: var(--font-mono);
+    letter-spacing: -0.02em;
+  }
 
   .honest {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    margin-bottom: 64px;
+    gap: 22px;
+    margin-bottom: 72px;
   }
-  .honest-card {
-    padding: 28px;
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.024), rgba(255,255,255,0.014));
-  }
-  .honest-card.grit { border-color: var(--line-strong); background: linear-gradient(160deg, rgba(86, 38, 12, 0.4), rgba(60, 28, 8, 0.5)); }
-  .honest-card h2 { font-size: 1.2rem; letter-spacing: -0.03em; margin: 0 0 10px; }
-  .honest-card p { color: var(--muted); font-size: 0.97rem; line-height: 1.65; margin: 0; }
 
-  .faq-section { margin-bottom: 64px; }
-  .faq-title { font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.04em; margin: 10px 0 28px; }
-  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-  .faq-item {
-    padding: 22px;
-    border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(255,255,255,0.022), rgba(255,255,255,0.012));
-  }
-  .faq-item h3 { font-size: 1rem; letter-spacing: -0.02em; margin: 0 0 8px; }
-  .faq-item p { color: var(--muted); font-size: 0.93rem; line-height: 1.6; margin: 0; }
-
-  .bottom-cta {
-    text-align: center;
-    padding: 48px 24px;
-    border: 1px solid var(--line-strong);
-    border-radius: 28px;
-    background: linear-gradient(160deg, rgba(86, 38, 12, 0.5), rgba(60, 28, 8, 0.62));
+  .honest article {
+    padding: 30px 28px;
+    border-radius: var(--radius);
     display: grid;
     gap: 10px;
-    justify-items: center;
+    align-content: start;
   }
-  .bottom-cta h2 { margin: 0; font-size: 1.7rem; letter-spacing: -0.03em; }
-  .bottom-cta p { color: var(--muted); margin: 0; }
-  .cta-btn {
-    margin-top: 8px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 52px;
-    padding: 0 30px;
-    border-radius: 999px;
-    background: #F4F1EC;
-    color: #2A2A2A;
-    font-weight: 800;
-    transition: 180ms ease;
+
+  .honest-them {
+    border: 1px solid var(--line);
   }
-  .cta-btn:hover { background: #fff; transform: translateY(-1px); }
-  .no-card { font-size: 0.82rem; color: var(--subtle); }
+
+  .honest-grit {
+    box-shadow: var(--shadow-paper);
+  }
+
+  .honest h2 {
+    font-size: 1.15rem;
+    margin: 0;
+  }
+
+  .honest-them h2 {
+    color: var(--text);
+  }
+
+  .honest-grit h2 {
+    color: var(--ink);
+  }
+
+  .honest-them p {
+    color: var(--muted);
+    font-size: 0.97rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .honest-grit p {
+    color: var(--ink-muted);
+    font-size: 0.97rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .faq-section {
+    display: grid;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
 
   @media (max-width: 760px) {
-    .honest { grid-template-columns: 1fr; }
-    .faq-grid { grid-template-columns: 1fr; }
+    .honest {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

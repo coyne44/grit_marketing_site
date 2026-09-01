@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import WaitlistCTA from '../../components/ui/WaitlistCTA.astro';
+import { PRICING } from '../../lib/site';
+
+const pages = [
+  {
+    href: '/compare/grit-vs-chirotouch',
+    name: 'Grit vs ChiroTouch',
+    copy: 'The chiropractic incumbent, built for clinic scale — against the one built for independent practices.',
+  },
+  {
+    href: '/compare/grit-vs-jane',
+    name: 'Grit vs Jane App',
+    copy: 'The polished multi-discipline platform — against the one that only speaks chiropractic.',
+  },
+  {
+    href: '/compare/chirotouch-alternatives',
+    name: 'ChiroTouch alternatives',
+    copy: 'The realistic options for an independent practice in 2026, trade-offs included.',
+  },
+];
+---
+
+<BaseLayout
+  title="Compare Chiropractic EHRs | Chiropractic Grit"
+  description={`Honest comparisons of Grit against ChiroTouch, Jane, and the rest of the chiropractic EHR market — including when the other option wins. Grit is $${PRICING.base}/mo, chiropractic-specific, insurance optional.`}
+>
+  <Nav />
+
+  <main class="page">
+    <div class="container">
+      <header class="page-header">
+        <div class="rule"><span class="kicker">Compare</span></div>
+        <h1>The market, mapped honestly.</h1>
+        <p class="header-copy">
+          The generic EHRs are affordable and don't know chiropractic. The chiro-specific
+          ones know the work and price like the only option. Every comparison below says
+          plainly when the other tool wins — because a comparison you can't trust
+          isn't worth ranking for.
+        </p>
+      </header>
+
+      <div class="cards">
+        {pages.map((p) => (
+          <a class="card" href={p.href}>
+            <h2>{p.name}</h2>
+            <p>{p.copy}</p>
+            <span class="go" aria-hidden="true">Read the comparison →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <WaitlistCTA
+    kicker="Early access"
+    title="Or skip the spreadsheet."
+    copy={`$${PRICING.base}/month, one provider, unlimited staff, insurance optional. Join the waitlist and we'll reach out before launch.`}
+  />
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page {
+    padding: 52px 0 20px;
+  }
+
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: 560px;
+  }
+
+  .rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  .page-header {
+    max-width: 720px;
+    margin-bottom: 48px;
+    display: grid;
+    gap: 16px;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+    line-height: 1.04;
+  }
+
+  .header-copy {
+    color: var(--muted);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  }
+
+  .card:hover {
+    border-color: var(--ember-strong);
+    transform: translateY(-2px);
+  }
+
+  .card h2 {
+    font-size: 1.15rem;
+    color: var(--text);
+  }
+
+  .card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .go {
+    color: var(--ember-strong);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 800px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
