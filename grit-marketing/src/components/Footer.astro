@@ -1,5 +1,6 @@
 ---
 import { CONTACT_EMAIL, TAGLINE } from '../lib/site';
+import Wordmark from './ui/Wordmark.astro';
 
 // Compare joins the Product column in the compare-pages PR (rb/07).
 const columns = [
@@ -35,8 +36,7 @@ const columns = [
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <span class="wordmark">GRIT</span>
-        <p class="tagline">{TAGLINE}</p>
+        <Wordmark size="1.5rem" sub={TAGLINE} />
         <a class="email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
       </div>
       {columns.map((col) => (
@@ -73,21 +73,6 @@ const columns = [
     gap: 10px;
     align-content: start;
     justify-items: start;
-  }
-
-  .wordmark {
-    font-family: var(--font-mono);
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--text);
-  }
-
-  .tagline {
-    margin: 0;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--subtle);
   }
 
   .email {
