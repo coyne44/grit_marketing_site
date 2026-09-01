@@ -2,50 +2,63 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import FaqList from '../components/ui/FaqList.astro';
+import WaitlistCTA from '../components/ui/WaitlistCTA.astro';
+import { PRICING, CTA, CONTACT_EMAIL } from '../lib/site';
 
-const features = [
-  'Unlimited patients',
-  'Unlimited appointments',
-  'SOAP notes with chiro-specific templates',
-  'Patient portal',
+const included = [
+  'One provider — and unlimited staff accounts',
+  'Unlimited patients and appointments',
+  'SOAP notes built for chiropractic',
+  'Care plans',
+  'Scheduling with online self-booking',
+  'Text & email appointment reminders',
+  'Patient payments (cards via Stripe)',
+  'Patient portal — booking, forms, messages, bills',
   'Secure messaging',
-  'Online scheduling',
-  'Automated appointment reminders',
-  'Payment processing via Stripe',
-  'HIPAA compliant',
-  'Business Associate Agreement (BAA) included',
+  'Data import from your old EHR',
+  'HIPAA compliant, BAA included',
   'Data export anytime',
-  'Email & chat support',
+];
+
+const examples = [
+  { label: 'Solo, cash practice', math: `$${PRICING.base}/mo` },
+  { label: 'Two providers', math: `$${PRICING.base + PRICING.perProvider}/mo` },
+  { label: 'Two providers + insurance', math: `$${PRICING.base + PRICING.perProvider + PRICING.insuranceAddon}/mo` },
 ];
 
 const faqs = [
   {
     q: 'Is there a free trial?',
-    a: 'Yes — early access members get a full trial period before any billing starts. No credit card required to join the waitlist.',
+    a: `No — but you can see everything before you pay. The walkthrough videos in our Help Center show the real product doing the actual work, and Grit is month-to-month, so you can cancel anytime.`,
   },
   {
     q: 'Can I cancel anytime?',
-    a: 'Absolutely. No contracts, no cancellation fees. Cancel from your account settings whenever you want.',
+    a: 'Yes. No contracts, no cancellation fees. Cancel from your account settings whenever you want, and your data exports with you.',
+  },
+  {
+    q: 'What counts as an additional provider?',
+    a: `A provider is a chiropractor with their own schedule and their own notes. Staff — front desk, office managers, billers — are unlimited and included at every practice size.`,
+  },
+  {
+    q: 'How does the insurance add-on work?',
+    a: `$${PRICING.insuranceAddon}/month, optional, on or off whenever you want. Claim submission, status tracking, and payment posting all happen inside Grit. You bring your own Claim.MD clearinghouse account — that subscription and its support relationship stay between you and Claim.MD.`,
+  },
+  {
+    q: 'Is Grit built for multi-provider clinics?',
+    a: `Grit is built for independent practices — solo or growing. Each additional provider is $${PRICING.perProvider}/month. No tier jump, no "contact sales."`,
   },
   {
     q: 'Is my patient data secure?',
-    a: 'Yes. Grit is fully HIPAA compliant. All data is encrypted in transit and at rest, hosted on AWS infrastructure with regular backups.',
+    a: 'Yes. Grit is HIPAA compliant: data is encrypted in transit and at rest, hosted on AWS infrastructure, with regular backups.',
   },
   {
     q: 'Do you provide a Business Associate Agreement (BAA)?',
     a: 'Yes. A BAA is included with every account — no extra steps, no extra cost.',
   },
   {
-    q: 'What payment methods do you accept?',
-    a: 'We accept all major credit and debit cards via Stripe.',
-  },
-  {
     q: 'Can I migrate data from my current EHR?',
-    a: "We're building data migration tools and will work with you directly on this during onboarding. Reach out and we'll figure out the best path for your setup.",
-  },
-  {
-    q: 'Is Grit built for multi-provider clinics?',
-    a: "Grit is built for solo chiropractors and small independent practices. If you're running a larger multi-provider operation, it may not be the right fit — yet.",
+    a: 'Yes. Grit imports patients, insurance, and appointments from the CSV or Excel exports your current system produces, with a dry-run preview before anything is written. We help you through it.',
   },
 ];
 
@@ -61,8 +74,8 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="Pricing — $49/mo Chiropractic EHR, No Contract | Chiropractic Grit"
-  description="Grit is $49/month, all-inclusive — SOAP notes, scheduling, patient portal, messaging, text reminders, and payments. No setup fees, no per-provider charges, no contract. Built for solo, cash-pay chiropractors."
+  title={`Pricing — $${PRICING.base}/mo Chiropractic EHR, No Contract | Chiropractic Grit`}
+  description={`Grit is $${PRICING.base}/month for everything — one provider, unlimited staff. Each additional provider is $${PRICING.perProvider}/month; insurance billing is an optional $${PRICING.insuranceAddon}/month add-on. Month-to-month, no setup fees, no contract.`}
   schema={faqSchema}
 >
   <Nav />
@@ -71,38 +84,37 @@ const faqSchema = {
     <div class="container">
 
       <!-- Header -->
-      <div class="page-header">
-        <div class="kicker">Pricing</div>
-        <h1>One plan. Everything included.</h1>
+      <header class="page-header">
+        <div class="rule"><span class="kicker">Pricing</span></div>
+        <h1>One price. Then only what you add.</h1>
         <p class="header-copy">
-          No tiers to decipher, no per-provider fees, no hidden charges.
-          Just one straightforward price for everything you need to run your practice.
+          The whole practice for ${PRICING.base} a month. Add a provider when you grow,
+          add insurance billing when you want it — and nothing else costs anything.
         </p>
-      </div>
+      </header>
 
-      <!-- Pricing card -->
-      <div class="pricing-wrap">
-        <div class="pricing-card">
-          <div class="pricing-left">
-            <div class="plan-name">Grit Pro</div>
+      <!-- The statement: pricing on paper -->
+      <div class="statement paper">
+        <div class="statement-main">
+          <div class="price-block">
             <div class="price">
-              <span class="amount">$49</span>
+              <span class="amount">${PRICING.base}</span>
               <span class="period">/ month</span>
             </div>
-            <p class="plan-desc">
-              Everything a solo chiropractor needs to run a modern, efficient practice.
+            <p class="price-desc">
+              Everything below. One provider, unlimited staff accounts.
               Billed monthly, cancel anytime.
             </p>
-            <a class="cta-btn" href="/waitlist">Join the Waitlist</a>
+            <a class="cta-btn" href={CTA.href}>{CTA.label}</a>
             <p class="no-card">No credit card required</p>
           </div>
 
-          <div class="pricing-right">
-            <p class="includes-label">Everything included:</p>
+          <div class="includes">
+            <p class="includes-label">Everything included</p>
             <ul class="feature-list">
-              {features.map((f) => (
+              {included.map((f) => (
                 <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="currentColor" width="16" height="16" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
                   {f}
                 </li>
               ))}
@@ -110,148 +122,171 @@ const faqSchema = {
           </div>
         </div>
 
-        <div class="trust-bar">
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
-            HIPAA Compliant
-          </span>
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
-            BAA Included
-          </span>
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
-            Cancel Anytime
-          </span>
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
-            Built for Solo Practices
-          </span>
-        </div>
-      </div>
-
-      <!-- FAQ -->
-      <div class="faq-section">
-        <div class="faq-header">
-          <div class="kicker">FAQ</div>
-          <h2>Common questions.</h2>
+        <div class="addons">
+          <div class="addon-row">
+            <div>
+              <span class="addon-name">Each additional provider</span>
+              <span class="addon-copy">Their own schedule, their own notes. Staff never count.</span>
+            </div>
+            <span class="addon-price">+${PRICING.perProvider}/mo</span>
+          </div>
+          <div class="addon-row">
+            <div>
+              <span class="addon-name">Insurance billing <em>optional</em></span>
+              <span class="addon-copy">
+                Submit claims from a signed note, track them, post payments — inside Grit.
+                You bring your own Claim.MD account; their subscription and support stay with them.
+              </span>
+            </div>
+            <span class="addon-price">+${PRICING.insuranceAddon}/mo</span>
+          </div>
         </div>
 
-        <div class="faq-grid">
-          {faqs.map((faq) => (
-            <div class="faq-item">
-              <h3>{faq.q}</h3>
-              <p>{faq.a}</p>
+        <div class="examples">
+          {examples.map((ex) => (
+            <div class="example">
+              <span class="ex-label">{ex.label}</span>
+              <span class="ex-math">{ex.math}</span>
             </div>
           ))}
         </div>
       </div>
 
-      <!-- Bottom CTA -->
-      <div class="bottom-cta">
-        <h2>Still have questions?</h2>
-        <p>We're happy to walk you through anything before you commit.</p>
-        <a class="ghost-btn" href="mailto:hello@chiropracticgrit.com">Get in touch</a>
+      <!-- Trust bar -->
+      <div class="trust-bar">
+        <span>HIPAA Compliant</span>
+        <span>BAA Included</span>
+        <span>Cancel Anytime</span>
+        <span>Built for Independent Practices</span>
       </div>
+
+      <!-- The honesty block -->
+      <section class="honesty">
+        <div class="rule"><span class="kicker">Said plainly</span></div>
+        <div class="honesty-grid">
+          <article>
+            <h3>No free trial</h3>
+            <p>
+              You can see everything before you pay — the walkthrough videos show the real
+              product — and it's month-to-month, so the exit is always open. We'd rather
+              earn month two than discount month one.
+            </p>
+          </article>
+          <article>
+            <h3>What's not ours</h3>
+            <p>
+              Stripe's card-processing fees on patient payments go to Stripe, like every
+              payment product. The Claim.MD account behind the insurance add-on is yours —
+              their subscription, their support line. Grit adds no markup to either.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq-section">
+        <div class="rule"><span class="kicker">Common questions</span></div>
+        <h2>Asked and answered.</h2>
+        <FaqList faqs={faqs} />
+      </section>
 
     </div>
   </main>
+
+  <WaitlistCTA
+    kicker="Early access"
+    title="The price is the whole pitch."
+    copy={`Join the waitlist and we'll reach out before launch. Questions first? Write us at ${CONTACT_EMAIL}.`}
+  />
 
   <Footer />
 </BaseLayout>
 
 <style>
   .page {
-    padding: 52px 0 84px;
+    padding: 52px 0 20px;
+  }
+
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: 560px;
+  }
+
+  .rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line-strong);
   }
 
   /* Header */
   .page-header {
-    max-width: 640px;
+    max-width: 680px;
     margin-bottom: 52px;
     display: grid;
-    gap: 14px;
-  }
-
-  .kicker {
-    color: var(--ember);
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    font-size: 0.78rem;
-    text-transform: uppercase;
+    gap: 16px;
   }
 
   h1 {
-    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
-    line-height: 1;
-    letter-spacing: -0.045em;
-    margin: 0;
+    font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+    line-height: 1.02;
   }
 
   .header-copy {
     color: var(--muted);
-    font-size: 1.05rem;
+    font-size: 1.08rem;
     line-height: 1.7;
     margin: 0;
   }
 
-  /* Pricing card */
-  .pricing-wrap {
-    margin-bottom: 72px;
-  }
-
-  .pricing-card {
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 0;
-    border: 1px solid var(--line-strong);
-    border-radius: 28px;
+  /* The statement */
+  .statement {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-paper);
     overflow: hidden;
-    box-shadow: var(--shadow);
-    margin-bottom: 0;
+    margin-bottom: 18px;
   }
 
-  .pricing-left {
-    padding: 40px;
-    background: linear-gradient(160deg, rgba(86, 38, 12, 0.92), rgba(60, 28, 8, 0.98));
-    border-right: 1px solid rgba(255,255,255,0.06);
+  .statement-main {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 40px;
+    padding: clamp(28px, 4.5vw, 48px);
+  }
+
+  .price-block {
     display: flex;
     flex-direction: column;
-  }
-
-  .plan-name {
-    font-size: 0.82rem;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(244,241,236,0.55);
-    margin-bottom: 20px;
   }
 
   .price {
     display: flex;
     align-items: baseline;
     gap: 6px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   .amount {
-    font-size: 4rem;
-    font-weight: 900;
-    letter-spacing: -0.05em;
+    font-family: var(--font-mono);
+    font-size: 4.4rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
     line-height: 1;
+    color: var(--ink);
   }
 
   .period {
-    color: rgba(244,241,236,0.5);
+    color: var(--ink-muted);
     font-size: 1rem;
   }
 
-  .plan-desc {
-    color: rgba(244,241,236,0.7);
-    font-size: 0.95rem;
+  .price-desc {
+    color: var(--ink-muted);
+    font-size: 0.97rem;
     line-height: 1.65;
-    margin: 0 0 32px;
+    margin: 0 0 28px;
     flex: 1;
   }
 
@@ -261,41 +296,36 @@ const faqSchema = {
     justify-content: center;
     min-height: 52px;
     padding: 0 28px;
-    border-radius: 999px;
-    background: #F4F1EC;
-    color: #2A2A2A;
-    font-weight: 800;
-    font-size: 0.97rem;
-    letter-spacing: -0.01em;
+    border-radius: var(--radius-sm);
+    background: var(--ember);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.98rem;
     transition: 180ms ease;
-    text-align: center;
+    box-shadow: 0 12px 28px rgba(199, 78, 14, 0.24);
     margin-bottom: 12px;
   }
 
   .cta-btn:hover {
-    background: #fff;
+    background: var(--ember-strong);
     transform: translateY(-1px);
   }
 
   .no-card {
-    color: rgba(244,241,236,0.38);
+    color: var(--ink-muted);
     font-size: 0.82rem;
     text-align: center;
     margin: 0;
   }
 
-  .pricing-right {
-    padding: 40px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.016));
-  }
-
   .includes-label {
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--subtle);
-    margin: 0 0 20px;
+    color: var(--ember);
+    margin: 0 0 18px;
   }
 
   .feature-list {
@@ -311,7 +341,7 @@ const faqSchema = {
     display: flex;
     align-items: flex-start;
     gap: 9px;
-    color: var(--muted);
+    color: var(--ink);
     font-size: 0.94rem;
     line-height: 1.4;
   }
@@ -322,153 +352,173 @@ const faqSchema = {
     margin-top: 2px;
   }
 
+  /* Add-on rows */
+  .addons {
+    border-top: 1px solid var(--line-paper);
+    padding: 8px clamp(28px, 4.5vw, 48px);
+  }
+
+  .addon-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 18px 0;
+  }
+
+  .addon-row + .addon-row {
+    border-top: 1px solid var(--line-paper);
+  }
+
+  .addon-row > div {
+    display: grid;
+    gap: 4px;
+  }
+
+  .addon-name {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .addon-name em {
+    font-style: normal;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-left: 8px;
+  }
+
+  .addon-copy {
+    color: var(--ink-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: 62ch;
+  }
+
+  .addon-price {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--ember);
+    white-space: nowrap;
+  }
+
+  /* Worked examples */
+  .examples {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--line-paper);
+    background: var(--bone-shade);
+  }
+
+  .example {
+    padding: 18px clamp(20px, 3vw, 32px);
+    display: grid;
+    gap: 4px;
+  }
+
+  .example + .example {
+    border-left: 1px solid var(--line-paper);
+  }
+
+  .ex-label {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+  }
+
+  .ex-math {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--ink);
+  }
+
   /* Trust bar */
   .trust-bar {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 24px 36px;
-    padding: 20px 24px;
-    border: 1px solid var(--line);
-    border-top: none;
-    border-radius: 0 0 22px 22px;
-    background: rgba(255,255,255,0.015);
+    gap: 14px 36px;
+    padding: 16px 24px 0;
+    margin-bottom: 84px;
   }
 
   .trust-bar span {
-    display: flex;
-    align-items: center;
-    gap: 7px;
     color: var(--subtle);
     font-size: 0.88rem;
     font-weight: 500;
   }
 
-  .trust-bar span svg {
-    color: var(--ember);
+  /* Honesty block */
+  .honesty {
+    display: grid;
+    gap: 34px;
+    margin-bottom: 84px;
+  }
+
+  .honesty-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 980px;
+  }
+
+  .honesty-grid article {
+    border-top: 1px solid var(--line-strong);
+    padding-top: 18px;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+  }
+
+  .honesty-grid h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .honesty-grid p {
+    margin: 0;
+    line-height: 1.65;
+    color: var(--muted);
   }
 
   /* FAQ */
   .faq-section {
-    margin-bottom: 72px;
-  }
-
-  .faq-header {
     display: grid;
-    gap: 12px;
-    margin-bottom: 36px;
+    gap: 22px;
+    margin-bottom: 20px;
   }
 
   h2 {
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-    line-height: 1.06;
-    letter-spacing: -0.04em;
-    margin: 0;
-  }
-
-  .faq-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
-
-  .faq-item {
-    padding: 24px;
-    border: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(255,255,255,0.024), rgba(255,255,255,0.014));
-  }
-
-  .faq-item:first-child { border-radius: 22px 0 0 0; }
-  .faq-item:nth-child(2) { border-radius: 0 22px 0 0; }
-  .faq-item:nth-last-child(2) { border-radius: 0 0 0 22px; }
-  .faq-item:last-child { border-radius: 0 0 22px 0; }
-
-  .faq-item h3 {
-    font-size: 1rem;
-    letter-spacing: -0.02em;
-    margin: 0 0 8px;
-  }
-
-  .faq-item p {
-    color: var(--muted);
-    font-size: 0.93rem;
-    line-height: 1.65;
-    margin: 0;
-  }
-
-  /* Bottom CTA */
-  .bottom-cta {
-    text-align: center;
-    padding: 52px 24px;
-    border: 1px solid var(--line);
-    border-radius: 28px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.024), rgba(255,255,255,0.014));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .bottom-cta h2 {
-    margin: 0;
-  }
-
-  .bottom-cta p {
-    color: var(--muted);
-    font-size: 1rem;
-    margin: 0;
-  }
-
-  .ghost-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    padding: 0 26px;
-    border-radius: 999px;
-    border: 1px solid var(--line-strong);
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
     color: var(--text);
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: 180ms ease;
-    margin-top: 4px;
-  }
-
-  .ghost-btn:hover {
-    background: rgba(255,255,255,0.05);
-    border-color: rgba(244,241,236,0.28);
-    transform: translateY(-1px);
+    margin-bottom: 12px;
   }
 
   /* Responsive */
   @media (max-width: 900px) {
-    .pricing-card {
+    .statement-main {
       grid-template-columns: 1fr;
-    }
-
-    .pricing-left {
-      border-right: none;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
     .feature-list {
       grid-template-columns: 1fr;
     }
-  }
 
-  @media (max-width: 700px) {
-    .faq-grid {
+    .examples {
       grid-template-columns: 1fr;
     }
 
-    .faq-item:first-child { border-radius: 22px 22px 0 0; }
-    .faq-item:nth-child(2) { border-radius: 0; }
-    .faq-item:nth-last-child(2) { border-radius: 0; }
-    .faq-item:last-child { border-radius: 0 0 22px 22px; }
+    .example + .example {
+      border-left: none;
+      border-top: 1px solid var(--line-paper);
+    }
 
-    .pricing-left,
-    .pricing-right {
-      padding: 28px;
+    .honesty-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
