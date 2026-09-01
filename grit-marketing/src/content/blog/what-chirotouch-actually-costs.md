@@ -2,6 +2,7 @@
 title: "What ChiroTouch Actually Costs Per Year (and a $49 Alternative)"
 description: "ChiroTouch's monthly price is only part of the story. Here's the real annual cost once you add setup, add-ons, and per-message fees — and how a $49/mo chiropractic EHR compares."
 pubDate: 2026-05-12
+updatedDate: 2026-09-01
 category: "Pricing"
 ---
 
@@ -41,7 +42,7 @@ But most solo chiropractors — especially cash-forward practices — never touc
 
 ChiroTouch has gone as far as publishing an article warning about "the real cost of cheap chiropractic EHR software." It's a fair point in one sense — software that loses your records or disappears next year is expensive no matter the price. But it conflates *cheap* with *focused*.
 
-A focused product can be both affordable **and** dependable. The savings don't come from cutting corners on security or uptime (Grit is HIPAA compliant, encrypted in transit and at rest, with a BAA included at no extra cost). They come from **not building** insurance-clearinghouse infrastructure, multi-location management, and a decade of enterprise features that a solo cash practice will never open.
+A focused product can be both affordable **and** dependable. The savings don't come from cutting corners on security or uptime (Grit is HIPAA compliant, encrypted in transit and at rest, with a BAA included at no extra cost). They come from **not carrying** multi-location management and a decade of enterprise features a small practice never opens — and from making insurance billing an optional add-on instead of the architecture everyone pays for.
 
 ## The $49 alternative
 
@@ -53,8 +54,8 @@ Grit is a modern, chiropractic-specific EHR built for solo and cash-pay practice
 - Secure messaging and **text reminders included** — no per-message fee
 - Stripe payments and superbills
 
-All of it for **$49/month. No setup fee. No per-provider charge. No contract.**
+All of it for **$49/month. No setup fee. No contract.** Additional providers are $20/month each, and optional insurance billing — claim submission, tracking, and payment posting through your own Claim.MD account — is $20/month.
 
-If you bill a lot of insurance, you'll likely still want a system with built-in claim submission, and that's an honest reason to look elsewhere. But if you're cash-forward — or just tired of paying enterprise prices for features you don't use — the math is hard to argue with.
+If you bill insurance, Grit's add-on covers claim submission, status tracking, and payment posting for $20/month. And if you're cash-forward — or just tired of paying enterprise prices for features you don't use — the math is hard to argue with either way.
 
 [See exactly what's included →](/pricing)

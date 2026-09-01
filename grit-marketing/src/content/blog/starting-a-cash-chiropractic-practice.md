@@ -29,7 +29,7 @@ This is where software comes in — and where new grads tend to either overspend
 - **A way to take bookings and intake online.** A patient portal that lets people book, fill out intake, and check in themselves saves you from being your own receptionist.
 - **Text reminders.** No-shows are pure lost revenue when you're cash-pay. Automated reminders pay for themselves immediately.
 
-A note on EHR choice: this is the recurring expense you'll carry for a decade, so the *all-in* monthly price matters more than any one-time discount. Add up the base price plus SMS fees, payment fees, and per-provider charges before you compare. (This is the whole reason Grit is a flat **$49/month** with text reminders and no setup fee — the early-career math shouldn't be working against you.)
+A note on EHR choice: this is the recurring expense you'll carry for a decade, so the *all-in* monthly price matters more than any one-time discount. Add up the base price plus SMS fees, payment fees, and per-provider charges before you compare. (This is the whole reason Grit is **$49/month** for a solo practice — text reminders included, unlimited staff accounts, no setup fee — the early-career math shouldn't be working against you.)
 
 ## Days 60–90: Getting patients in the door
 
