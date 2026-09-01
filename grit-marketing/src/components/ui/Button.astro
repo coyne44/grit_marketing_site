@@ -1,0 +1,60 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'ghost';
+  size?: 'md' | 'lg';
+}
+
+const { href, variant = 'primary', size = 'md' } = Astro.props;
+---
+
+<a href={href} class:list={['btn', variant, size]}><slot /></a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 46px;
+    padding: 0 22px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease),
+      transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+
+  .btn.lg {
+    min-height: 54px;
+    padding: 0 30px;
+    font-size: 1rem;
+  }
+
+  .primary {
+    background: var(--ember);
+    color: #fff;
+    box-shadow: 0 10px 26px rgba(199, 78, 14, 0.28);
+  }
+
+  .primary:hover {
+    background: var(--ember-strong);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px rgba(199, 78, 14, 0.32);
+  }
+
+  .ghost {
+    border-color: var(--line-strong);
+    color: var(--text);
+    background: transparent;
+  }
+
+  .ghost:hover {
+    border-color: var(--ember-strong);
+    color: var(--ember-strong);
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import { PRICING } from '../../lib/site';
+---
+
+<section class="gap container">
+  <SectionHeader
+    kicker="The market, honestly"
+    title="Every EHR makes you choose."
+    copy="Affordable, modern, or actually built for chiropractic — until now you got to pick one, maybe two."
+  />
+  <div class="cards">
+    <article>
+      <h3>The generic ones</h3>
+      <p>
+        Affordable, sometimes even modern. And they don't know a CMT code from an
+        office visit — you're the one bending a general tool around a chiropractic day.
+      </p>
+    </article>
+    <article>
+      <h3>The chiro-specific ones</h3>
+      <p>
+        They know the work. They also carry fifteen years of legacy code and price
+        like the only option — because for a long time, they were.
+      </p>
+    </article>
+    <article class="grit paper">
+      <h3>Grit</h3>
+      <p>
+        Modern, built only for chiropractic, and priced at cost —
+        ${PRICING.base} a month. The corner of the market that was empty.
+      </p>
+    </article>
+  </div>
+  <a class="more" href="/compare/">See the honest comparisons →</a>
+</section>
+
+<style>
+  .gap {
+    padding: 96px 0 20px;
+    display: grid;
+    gap: 44px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  article {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+  }
+
+  article.grit {
+    border: none;
+    box-shadow: var(--shadow-paper);
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .more {
+    justify-self: start;
+    color: var(--ember-strong);
+    font-weight: 600;
+    transition: color var(--dur) var(--ease);
+  }
+
+  .more:hover {
+    color: var(--text);
+  }
+
+  @media (max-width: 800px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+/** THE logo: the GRIT wordmark — IBM Plex Mono bold, tight tracking, the "I"
+    in Ember Orange. Canon lives in the app's sign-in page and the grit-videos
+    intro/endcard bumpers. Optional letterspaced sub-line beneath.
+    Never a boxed "G" chip, never wide letterspacing on the wordmark itself. */
+interface Props {
+  size?: string;
+  sub?: string;
+}
+
+const { size = '1.35rem', sub } = Astro.props;
+---
+
+<span class="lockup">
+  <span class="wordmark" style={`font-size: ${size}`}>GR<span class="i">I</span>T</span>
+  {sub && <small class="sub">{sub}</small>}
+</span>
+
+<style>
+  .lockup {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+    line-height: 1;
+  }
+
+  .wordmark {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .i {
+    color: var(--ember);
+  }
+
+  .sub {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+</style>

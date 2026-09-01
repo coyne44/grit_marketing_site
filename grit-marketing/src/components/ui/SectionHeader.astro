@@ -1,0 +1,52 @@
+---
+/** The site's structural signature: a small mono chart-label sitting on a
+    hairline rule — a labeled field line, the paperwork register kept calm. */
+interface Props {
+  kicker: string;
+  title: string;
+  copy?: string;
+}
+
+const { kicker, title, copy } = Astro.props;
+---
+
+<header class="section-header">
+  <div class="rule" aria-hidden="true">
+    <span class="kicker">{kicker}</span>
+  </div>
+  <h2>{title}</h2>
+  {copy && <p class="copy">{copy}</p>}
+</header>
+
+<style>
+  .section-header {
+    display: grid;
+    gap: 18px;
+    max-width: 720px;
+  }
+
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  h2 {
+    font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+    color: var(--text);
+  }
+
+  .copy {
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+</style>
