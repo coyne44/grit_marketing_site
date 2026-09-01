@@ -1,0 +1,72 @@
+---
+/** The page-bottom conversion band every page ends with. Sits on a paper
+    panel — the one bright surface on the page, where the ask happens.
+    CTA target/label comes from src/lib/site.ts (provision-day flip point). */
+import { CTA } from '../../lib/site';
+import Button from './Button.astro';
+
+interface Props {
+  kicker?: string;
+  title: string;
+  copy?: string;
+}
+
+const { kicker = 'Get started', title, copy } = Astro.props;
+---
+
+<section class="cta-band">
+  <div class="container">
+    <div class="panel paper">
+      <span class="kicker band-kicker">{kicker}</span>
+      <h2>{title}</h2>
+      {copy && <p class="copy">{copy}</p>}
+      <div class="actions">
+        <Button href={CTA.href} size="lg">{CTA.label}</Button>
+      </div>
+      <p class="fine">No credit card required.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    padding: 40px 0 96px;
+  }
+
+  .panel {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-paper);
+    padding: clamp(40px, 6vw, 72px);
+    display: grid;
+    gap: 16px;
+    justify-items: start;
+  }
+
+  .band-kicker {
+    color: var(--ember);
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 3.8vw, 2.7rem);
+    color: var(--ink);
+    max-width: 620px;
+  }
+
+  .copy {
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: var(--ink-muted);
+    max-width: 560px;
+  }
+
+  .actions {
+    margin-top: 10px;
+  }
+
+  .fine {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+  }
+</style>

@@ -1,22 +1,27 @@
 ---
+import { CTA } from '../lib/site';
+import Wordmark from './ui/Wordmark.astro';
+
+// Compare joins this list in the compare-pages PR (rb/07), when /compare/ exists.
+const links = [
+  { href: '/features', label: 'Features' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/help', label: 'Help' },
+];
 ---
 
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="/" class="brand">
-      <div class="brand-mark">G</div>
-      <div class="brand-text">
-        <small>CHIROPRACTIC</small>
-        <span>GRIT</span>
-      </div>
+    <a href="/" class="brand" aria-label="Chiropractic Grit home">
+      <Wordmark size="1.45rem" />
     </a>
 
     <div class="nav-links" id="nav-links">
-      <a href="/features">Features</a>
-      <a href="/pricing">Pricing</a>
-      <a href="/blog">Blog</a>
-      <a href="/security">Security</a>
-      <a class="btn btn-primary" href="/waitlist">Join the Waitlist</a>
+      {links.map((l) => (
+        <a href={l.href}>{l.label}</a>
+      ))}
+      <a class="btn-primary" href={CTA.href}>{CTA.label}</a>
     </div>
 
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
@@ -28,11 +33,10 @@
 </nav>
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <a href="/features" class="mobile-link">Features</a>
-  <a href="/pricing" class="mobile-link">Pricing</a>
-  <a href="/blog" class="mobile-link">Blog</a>
-  <a href="/security" class="mobile-link">Security</a>
-  <a href="/waitlist" class="mobile-link mobile-cta">Join the Waitlist</a>
+  {links.map((l) => (
+    <a href={l.href} class="mobile-link">{l.label}</a>
+  ))}
+  <a href={CTA.href} class="mobile-link mobile-cta">{CTA.label}</a>
 </div>
 
 <script>
@@ -62,7 +66,7 @@
     top: 0;
     z-index: 40;
     backdrop-filter: blur(14px);
-    background: rgba(42, 42, 42, 0.78);
+    background: rgba(42, 42, 42, 0.82);
     border-bottom: 1px solid var(--line);
   }
 
@@ -70,82 +74,53 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 76px;
+    min-height: 74px;
     gap: 24px;
   }
 
   .brand {
     display: flex;
     align-items: center;
-    gap: 14px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
+    opacity: 1;
+    transition: opacity var(--dur) var(--ease);
   }
 
-  .brand-mark {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, var(--ember) 0%, var(--ember-strong) 100%);
-    display: grid;
-    place-items: center;
-    color: #111;
-    box-shadow: 0 10px 25px rgba(199, 78, 14, 0.28);
-    font-size: 0.95rem;
-    font-weight: 900;
-  }
-
-  .brand-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-  }
-
-  .brand-text small {
-    font-size: 0.64rem;
-    letter-spacing: 0.22em;
-    color: var(--subtle);
-    margin-bottom: 4px;
-    font-weight: 700;
-  }
-
-  .brand-text span {
-    font-size: 1.1rem;
-    color: var(--text);
+  .brand:hover {
+    opacity: 0.85;
   }
 
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 22px;
-    color: var(--muted);
-    font-size: 0.95rem;
+    gap: 26px;
+    font-size: 0.94rem;
   }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 44px;
-    padding: 0 20px;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    transition: 180ms ease;
-    cursor: pointer;
+  .nav-links > a:not(.btn-primary) {
+    color: var(--muted);
+    transition: color var(--dur) var(--ease);
+  }
+
+  .nav-links > a:not(.btn-primary):hover {
+    color: var(--text);
   }
 
   .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 20px;
+    border-radius: var(--radius-sm);
     background: var(--ember);
-    color: var(--text);
-    box-shadow: 0 8px 20px rgba(199, 78, 14, 0.22);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
   }
 
   .btn-primary:hover {
-    transform: translateY(-1px);
     background: var(--ember-strong);
-    box-shadow: 0 12px 24px rgba(199, 78, 14, 0.28);
+    transform: translateY(-1px);
   }
 
   /* Hamburger */
@@ -160,8 +135,8 @@
     border: none;
     cursor: pointer;
     padding: 8px;
-    border-radius: 10px;
-    transition: background 180ms ease;
+    border-radius: var(--radius-sm);
+    transition: background var(--dur) var(--ease);
   }
 
   .hamburger:hover {
@@ -173,7 +148,7 @@
     height: 2px;
     background: var(--text);
     border-radius: 2px;
-    transition: transform 220ms ease, opacity 180ms ease;
+    transition: transform 220ms var(--ease), opacity var(--dur) var(--ease);
     transform-origin: center;
   }
 
@@ -193,7 +168,7 @@
   .mobile-menu {
     display: none;
     position: fixed;
-    top: 76px;
+    top: 74px;
     left: 0;
     right: 0;
     z-index: 39;
@@ -205,7 +180,7 @@
     gap: 2px;
     transform: translateY(-8px);
     opacity: 0;
-    transition: transform 200ms ease, opacity 200ms ease;
+    transition: transform 200ms var(--ease), opacity 200ms var(--ease);
     pointer-events: none;
   }
 
@@ -221,8 +196,8 @@
     color: var(--muted);
     font-size: 1rem;
     font-weight: 500;
-    transition: color 150ms ease, background 150ms ease;
-    border-radius: 10px;
+    transition: color 150ms var(--ease), background 150ms var(--ease);
+    border-radius: var(--radius-sm);
     margin: 0 8px;
   }
 
@@ -232,13 +207,9 @@
   }
 
   .mobile-cta {
-    color: var(--ember);
+    color: var(--ember-strong);
     font-weight: 700;
     margin-top: 8px;
-  }
-
-  .mobile-cta:hover {
-    color: var(--ember-strong);
   }
 
   @media (max-width: 760px) {

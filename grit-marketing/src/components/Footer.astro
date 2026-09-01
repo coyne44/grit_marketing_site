@@ -1,41 +1,128 @@
 ---
+import { CONTACT_EMAIL, TAGLINE } from '../lib/site';
+import Wordmark from './ui/Wordmark.astro';
+
+// Compare joins the Product column in the compare-pages PR (rb/07).
+const columns = [
+  {
+    title: 'Product',
+    links: [
+      { href: '/features', label: 'Features' },
+      { href: '/pricing', label: 'Pricing' },
+      { href: '/security', label: 'Security' },
+      { href: '/waitlist', label: 'Waitlist' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { href: '/blog', label: 'Blog' },
+      { href: '/help', label: 'Help Center' },
+      { href: '/help/videos', label: 'Video Guides' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { href: '/privacy', label: 'Privacy' },
+      { href: '/terms', label: 'Terms' },
+      { href: '/sms', label: 'SMS Terms' },
+    ],
+  },
+];
 ---
 
 <footer class="footer">
-  <div class="container footer-inner">
-    <span>Chiropractic Grit &copy; {new Date().getFullYear()}</span>
-    <div class="footer-links">
-      <a href="/features">Features</a>
-      <a href="/pricing">Pricing</a>
-      <a href="/security">Security</a>
-      <a href="/help">Help</a>
-      <a href="/waitlist">Waitlist</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/sms">SMS</a>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <Wordmark size="1.5rem" sub={TAGLINE} />
+        <a class="email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      </div>
+      {columns.map((col) => (
+        <nav class="footer-col" aria-label={col.title}>
+          <span class="col-title">{col.title}</span>
+          {col.links.map((l) => (
+            <a href={l.href}>{l.label}</a>
+          ))}
+        </nav>
+      ))}
+    </div>
+    <div class="footer-bottom">
+      <span>Chiropractic Grit &copy; {new Date().getFullYear()}</span>
     </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    padding: 0 0 38px;
+    border-top: 1px solid var(--line);
+    padding: 56px 0 34px;
     color: var(--subtle);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
   }
 
-  .footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
   }
 
-  .footer-links {
-    display: flex;
-    gap: 20px;
+  .footer-brand {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    justify-items: start;
   }
 
-  .footer-links a:hover {
+  .email {
     color: var(--muted);
+    transition: color var(--dur) var(--ease);
+  }
+
+  .email:hover {
+    color: var(--ember-strong);
+  }
+
+  .footer-col {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+  }
+
+  .col-title {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-bottom: 4px;
+  }
+
+  .footer-col a {
+    color: var(--muted);
+    transition: color var(--dur) var(--ease);
+  }
+
+  .footer-col a:hover {
+    color: var(--text);
+  }
+
+  .footer-bottom {
+    margin-top: 44px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 0.84rem;
+  }
+
+  @media (max-width: 760px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
   }
 </style>
