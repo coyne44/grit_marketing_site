@@ -1,0 +1,110 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { HELP_CATEGORY_META } from '../../lib/help';
+
+const articles = await getCollection('help', ({ data }) => !data.draft);
+
+const byCategory = HELP_CATEGORY_META.map((cat) => ({
+  ...cat,
+  articles: articles
+    .filter((a) => a.data.category === cat.slug)
+    .sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title)),
+})).filter((cat) => cat.articles.length > 0);
+
+const hasVideos = articles.some((a) => a.data.videoId);
+---
+
+<BaseLayout
+  title="Help Center | Chiropractic Grit"
+  description="Step-by-step guides for running your practice on GRIT — setup, scheduling, notes, payments, text reminders, and bringing your data over from your old system."
+>
+  <Nav />
+  <main class="page">
+    <div class="container">
+      <div class="page-header">
+        <div class="kicker">GRIT Help</div>
+        <h1>How can we help?</h1>
+        <p class="header-copy">
+          Step-by-step guides for everything in GRIT. Can't find what you need? Open GRIT,
+          hit the <strong>?</strong> button in the bottom-right corner, and contact support —
+          we respond within 1 business day.
+        </p>
+        {hasVideos && <a class="videos-link" href="/help/videos">Watch product videos →</a>}
+      </div>
+
+      {byCategory.length === 0 ? (
+        <p class="empty">Articles are on the way.</p>
+      ) : (
+        <div class="categories">
+          {byCategory.map((cat) => (
+            <section class="category">
+              <h2>{cat.label}</h2>
+              <p class="blurb">{cat.blurb}</p>
+              <ul>
+                {cat.articles.map((a) => (
+                  <li>
+                    <a href={`/help/${a.id}`}>
+                      <span class="a-title">{a.data.title}</span>
+                      <span class="a-desc">{a.data.description}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      )}
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page { padding: 52px 0 84px; }
+  .page-header { max-width: 680px; margin-bottom: 48px; display: grid; gap: 14px; }
+  .kicker {
+    color: var(--ember);
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    margin: 0;
+  }
+  .header-copy { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin: 0; }
+  .header-copy strong { color: var(--text); }
+  .videos-link { color: var(--text); font-weight: 700; font-size: 0.95rem; }
+  .videos-link:hover { color: var(--ember); }
+  .empty { color: var(--muted); }
+
+  .categories { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .category {
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.026), rgba(255,255,255,0.014));
+  }
+  .category h2 {
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin: 0 0 6px;
+  }
+  .blurb { color: var(--subtle); font-size: 0.9rem; line-height: 1.55; margin: 0 0 16px; }
+  .category ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .category a { display: grid; gap: 2px; padding: 10px 12px; margin: 0 -12px; border-radius: 12px; transition: 150ms ease; }
+  .category a:hover { background: rgba(255,255,255,0.04); }
+  .a-title { color: var(--text); font-weight: 700; font-size: 0.98rem; }
+  .a-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+
+  @media (max-width: 760px) {
+    .categories { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,138 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { categoryLabel } from '../../lib/help';
+
+const videos = (await getCollection('help', ({ data }) => !data.draft && !!data.videoId)).sort(
+  (a, b) => a.data.category.localeCompare(b.data.category) || a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+  title="Product Videos | GRIT Help"
+  description="Short walkthrough videos of GRIT — real footage of the actual product, narrated step by step."
+>
+  <Nav />
+  <main class="page">
+    <div class="container">
+      <div class="page-header">
+        <div class="kicker">GRIT Help</div>
+        <h1>Product videos.</h1>
+        <p class="header-copy">
+          Short walkthroughs recorded in the real product — no mockups, no slideware.
+          Every video has a written version you can skim instead:
+          <a href="/help">browse the help articles</a>.
+        </p>
+      </div>
+
+      {videos.length === 0 ? (
+        <p class="empty">Videos are on the way. In the meantime, the <a href="/help">written guides</a> cover every step.</p>
+      ) : (
+        <ul class="video-list">
+          {videos.map((v) => (
+            <li>
+              <a href={`/help/${v.id}`}>
+                <div class="thumb">
+                  <img
+                    src={`https://img.youtube.com/vi/${v.data.videoId}/hqdefault.jpg`}
+                    alt={v.data.title}
+                    loading="lazy"
+                  />
+                  <span class="play" aria-hidden="true">▶</span>
+                </div>
+                <span class="cat">{categoryLabel(v.data.category)}</span>
+                <h2>{v.data.title}</h2>
+                <p>{v.data.description}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page { padding: 52px 0 84px; }
+  .page-header { max-width: 680px; margin-bottom: 48px; display: grid; gap: 14px; }
+  .kicker {
+    color: var(--ember);
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    margin: 0;
+  }
+  .header-copy { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin: 0; }
+  .header-copy a { color: var(--ember); text-decoration: underline; text-underline-offset: 3px; }
+  .empty { color: var(--muted); }
+  .empty a { color: var(--ember); text-decoration: underline; text-underline-offset: 3px; }
+
+  .video-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .video-list a {
+    display: grid;
+    gap: 10px;
+    height: 100%;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.026), rgba(255,255,255,0.014));
+    transition: 180ms ease;
+  }
+  .video-list a:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+  }
+  .thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .play {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 2.2rem;
+    color: #fff;
+    background: rgba(0,0,0,0.25);
+    transition: 150ms ease;
+  }
+  .video-list a:hover .play { background: rgba(0,0,0,0.1); }
+  .cat {
+    color: var(--ember);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+  }
+  .video-list h2 {
+    font-size: 1.2rem;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+  .video-list p { color: var(--muted); font-size: 0.92rem; line-height: 1.6; margin: 0; }
+
+  @media (max-width: 760px) {
+    .video-list { grid-template-columns: 1fr; }
+  }
+</style>
