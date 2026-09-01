@@ -1,0 +1,115 @@
+---
+import Button from '../ui/Button.astro';
+import { CTA, DEMO_URL, PRICING } from '../../lib/site';
+
+// Reserved demo slot: when DEMO_URL is set in site.ts, the secondary button
+// becomes the demo entry point with no redesign.
+const secondary = DEMO_URL
+  ? { href: DEMO_URL, label: 'Try the demo' }
+  : { href: '/features', label: "See what's included" };
+---
+
+<section class="hero">
+  <div class="texture" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="container inner">
+    <div class="rule"><span class="kicker">For chiropractors who bet on themselves</span></div>
+    <h1>Less business.<br /><em>More practice.</em></h1>
+    <p class="sub">
+      Grit is a modern EHR built for the independent chiropractor — scheduling, notes,
+      care plans, payments, reminders, and insurance billing, run from one place,
+      for ${PRICING.base} a month.
+    </p>
+    <div class="actions">
+      <Button href={CTA.href} size="lg">{CTA.label}</Button>
+      <Button href={secondary.href} variant="ghost" size="lg">{secondary.label}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: clamp(80px, 12vh, 140px) 0 clamp(80px, 11vh, 120px);
+    overflow: hidden;
+  }
+
+  /* The brand atmosphere from the video bumpers and the sign-in page:
+     faint 45° ember pinstripe over a soft glow. */
+  .texture {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: repeating-linear-gradient(45deg, var(--ember) 0, var(--ember) 1px, transparent 0, transparent 50%);
+    background-size: 12px 12px;
+  }
+
+  .glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 24% 18%, rgba(199, 78, 14, 0.2), transparent 44%);
+  }
+
+  .inner {
+    position: relative;
+    display: grid;
+    gap: 26px;
+    justify-items: start;
+    max-width: min(calc(100% - 48px), var(--max));
+  }
+
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: min(100%, 560px);
+    animation: rise 0.5s var(--ease) both;
+  }
+
+  .rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line-strong);
+  }
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 5.2rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    animation: rise 0.5s var(--ease) 0.08s both;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--ember-strong);
+  }
+
+  .sub {
+    margin: 0;
+    max-width: 56ch;
+    font-size: 1.14rem;
+    line-height: 1.7;
+    color: var(--muted);
+    animation: rise 0.5s var(--ease) 0.16s both;
+  }
+
+  .actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    animation: rise 0.5s var(--ease) 0.24s both;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

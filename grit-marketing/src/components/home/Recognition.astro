@@ -1,0 +1,75 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+---
+
+<section class="recognition container">
+  <SectionHeader
+    kicker="The part nobody chose"
+    title="You didn't sign up to run a business."
+    copy="The math signed you up anyway."
+  />
+  <div class="beats">
+    <article>
+      <h3>The arithmetic</h3>
+      <p>
+        Associate positions pay $60–80K. School cost $200K or more. For a lot of DCs,
+        opening a practice wasn't the dream — it was the only line that added up.
+      </p>
+    </article>
+    <article>
+      <h3>The second job</h3>
+      <p>
+        So now there's billing, scheduling, reminders, statements, follow-up. Nobody
+        covered any of it in school, and none of it is why you're in this.
+      </p>
+    </article>
+    <article>
+      <h3>The actual work</h3>
+      <p>
+        Patients. The adjustment. Getting someone out of pain and back to their life.
+        That part deserves more of your day than the paperwork gets.
+      </p>
+    </article>
+  </div>
+</section>
+
+<style>
+  .recognition {
+    padding: 96px 0 20px;
+    display: grid;
+    gap: 44px;
+  }
+
+  .beats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  article {
+    border-top: 1px solid var(--line-strong);
+    padding-top: 20px;
+    display: grid;
+    gap: 10px;
+    align-content: start;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  @media (max-width: 800px) {
+    .beats {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+  }
+</style>

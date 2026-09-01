@@ -1,0 +1,89 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import { PRICING } from '../../lib/site';
+
+const rows = [
+  { label: 'Everything above — one provider, unlimited staff accounts', price: `$${PRICING.base}/mo` },
+  { label: 'Each additional provider', price: `+$${PRICING.perProvider}/mo` },
+  { label: 'Insurance billing (optional)', price: `+$${PRICING.insuranceAddon}/mo` },
+];
+---
+
+<section class="strip container">
+  <SectionHeader
+    kicker="The whole price"
+    title={`$${PRICING.base}. Then only what you add.`}
+  />
+  <div class="ledger">
+    {rows.map((row) => (
+      <div class="row">
+        <span class="label">{row.label}</span>
+        <span class="dots" aria-hidden="true"></span>
+        <span class="price">{row.price}</span>
+      </div>
+    ))}
+  </div>
+  <p class="fine">
+    Month-to-month, cancel anytime. No setup fees, no contract, no sales call.
+    <a href="/pricing">See the full pricing math →</a>
+  </p>
+</section>
+
+<style>
+  .strip {
+    padding: 96px 0 20px;
+    display: grid;
+    gap: 40px;
+  }
+
+  .ledger {
+    display: grid;
+    max-width: 760px;
+  }
+
+  .row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 18px 2px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .row:first-child {
+    border-top: 1px solid var(--line-strong);
+  }
+
+  .label {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--line-strong);
+    transform: translateY(-4px);
+  }
+
+  .price {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--ember-strong);
+    white-space: nowrap;
+  }
+
+  .fine {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .fine a {
+    color: var(--ember-strong);
+    font-weight: 600;
+    margin-left: 6px;
+  }
+
+  .fine a:hover {
+    color: var(--text);
+  }
+</style>

@@ -1,24 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import Problem from '../components/Problem.astro';
-import Features from '../components/Features.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import WhyGrit from '../components/WhyGrit.astro';
-import CTA from '../components/CTA.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/home/Hero.astro';
+import Recognition from '../components/home/Recognition.astro';
+import TheGap from '../components/home/TheGap.astro';
+import ProductProof from '../components/home/ProductProof.astro';
+import PricingStrip from '../components/home/PricingStrip.astro';
+import WaitlistCTA from '../components/ui/WaitlistCTA.astro';
+import { PRICING } from '../lib/site';
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="Grit — Chiropractic EHR for Independent Chiropractors"
+  description={`The modern chiropractic EHR: scheduling, SOAP notes, care plans, patient payments, text reminders, secure messaging, and optional insurance billing. $${PRICING.base}/month — one provider, unlimited staff accounts.`}
+>
   <Nav />
   <main>
     <Hero />
-    <Problem />
-    <Features />
-    <HowItWorks />
-    <WhyGrit />
-    <CTA />
+    <Recognition />
+    <TheGap />
+    <ProductProof />
+    <PricingStrip />
+    <WaitlistCTA
+      kicker="Early access"
+      title="Ready when you are."
+      copy="Join the waitlist and we'll reach out before launch — no credit card, no sales call."
+    />
   </main>
   <Footer />
 </BaseLayout>
