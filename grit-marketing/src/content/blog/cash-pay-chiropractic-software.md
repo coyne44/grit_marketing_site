@@ -2,6 +2,7 @@
 title: "Cash-Pay Chiropractic Software: What You Actually Need (and What You Don't)"
 description: "A practical guide to choosing software for a cash-based chiropractic practice — which features matter, which ones you're overpaying for, and why insurance-first EHRs are the wrong fit."
 pubDate: 2026-05-19
+updatedDate: 2026-09-01
 category: "Cash practice"
 ---
 
@@ -50,8 +51,8 @@ A few questions that quickly separate the right fit from the wrong one:
 
 ## Where Grit fits
 
-Grit was built for exactly this practice: solo, chiropractic-specific, cash-forward. SOAP notes designed for chiropractic, scheduling, patient portal, secure messaging, text reminders, Stripe payments, and superbills — **$49/month, all-inclusive, no contract.** HIPAA compliant with a BAA included.
+Grit was built for exactly this practice: solo, chiropractic-specific, cash-forward. SOAP notes designed for chiropractic, scheduling, patient portal, secure messaging, text reminders, Stripe payments, and superbills — **$49/month, no contract.** HIPAA compliant with a BAA included.
 
-It deliberately does **not** do insurance claim submission. If that's central to your practice, Grit isn't your tool, and we'll tell you so. But if you've been paying $120–$300 a month for a billing engine you never turn on, that's the overpayment this is meant to end.
+Insurance claim submission is an optional **$20/month add-on** — off by default, so a cash practice never pays for a billing engine it doesn't turn on. If your practice takes insurance later, you flip a switch instead of switching systems. Either way, paying $120–$300 a month for infrastructure you never use is the overpayment this is meant to end.
 
 [See what's included for $49/mo →](/pricing)
