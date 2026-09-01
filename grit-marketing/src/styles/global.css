@@ -29,9 +29,11 @@
   --line-paper: rgba(42, 42, 42, 0.14);
   --line-paper-strong: rgba(42, 42, 42, 0.3);
 
-  /* Type */
-  --font-display: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
-  --font-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Type. The mono face is brand-lockup and micro-label territory only
+     (logo, kickers, footer column titles) — never headings, buttons, or body. */
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --font-body: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: var(--font-body);
 
   /* Shape & layout */
   --radius-sm: 8px;
@@ -77,8 +79,8 @@ h3,
 h4 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  letter-spacing: -0.025em;
   line-height: 1.12;
 }
 
@@ -101,7 +103,7 @@ h4 {
 /* The chart-label kicker: a small mono field label, set on the site's
    paperwork register. Used above headings site-wide. */
 .kicker {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.2em;
