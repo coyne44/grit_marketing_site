@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro';
 import { PRICING, CONTACT_EMAIL, TAGLINE } from '../lib/site';
 
 interface Props {
@@ -102,5 +103,29 @@ const allSchemas = [organizationSchema, softwareSchema, ...extraSchemas];
   </head>
   <body>
     <slot />
+    <Analytics />
+
+    <!-- First-touch attribution: remembers where a visitor first came from and the
+         first page they landed on, so a later waitlist signup can say how they
+         found us. localStorage only — no cookies, nothing sent anywhere unless
+         the visitor submits the waitlist form (see waitlist.astro). -->
+    <script is:inline>
+      try {
+        var KEY = 'grit_first_touch';
+        if (!localStorage.getItem(KEY)) {
+          var ref = document.referrer;
+          var external = ref && new URL(ref).hostname !== location.hostname;
+          var q = new URLSearchParams(location.search);
+          localStorage.setItem(KEY, JSON.stringify({
+            referrer: external ? ref : '(direct)',
+            landing_page: location.pathname + location.search,
+            utm_source: q.get('utm_source') || '',
+            utm_medium: q.get('utm_medium') || '',
+            utm_campaign: q.get('utm_campaign') || '',
+            first_visit: new Date().toISOString(),
+          }));
+        }
+      } catch (e) {}
+    </script>
   </body>
 </html>

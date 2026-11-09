@@ -181,6 +181,15 @@ const ehrs = [
               <textarea id="anything_else" name="anything_else" rows="3" placeholder="Feel free to share anything — features you need, frustrations with your current setup, questions…"></textarea>
             </div>
 
+            <!-- First-touch attribution (filled from localStorage set in BaseLayout).
+                 Additive only; does not touch any field listed in INVARIANTS above. -->
+            <input type="hidden" name="ft_referrer" />
+            <input type="hidden" name="ft_landing_page" />
+            <input type="hidden" name="ft_utm_source" />
+            <input type="hidden" name="ft_utm_medium" />
+            <input type="hidden" name="ft_utm_campaign" />
+            <input type="hidden" name="ft_first_visit" />
+
             <button type="submit" class="submit-btn">Request Early Access</button>
 
             <p class="fine-print">No credit card required. We'll never spam you.</p>
@@ -246,6 +255,18 @@ const ehrs = [
       alert('Something went wrong. Please try again.');
     }
   });
+</script>
+
+<script>
+  // Fill the hidden ft_* fields from the first-touch record. Kept separate from
+  // the invariant submit script above on purpose.
+  try {
+    const ft = JSON.parse(localStorage.getItem('grit_first_touch') || '{}');
+    for (const [k, v] of Object.entries(ft)) {
+      const el = document.querySelector<HTMLInputElement>(`#waitlist-form input[name="ft_${k}"]`);
+      if (el) el.value = String(v);
+    }
+  } catch {}
 </script>
 
 <style>
