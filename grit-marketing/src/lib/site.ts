@@ -22,6 +22,6 @@ export const CTA = {
     here and the Hero's secondary button becomes "Try the demo" — no redesign. */
 export const DEMO_URL: string | null = null;
 
-export const CONTACT_EMAIL = 'hello@chiropracticgrit.com';
+export const CONTACT_EMAIL = 'support@chiropracticgrit.com';
 
 export const TAGLINE = 'Less business. More practice.';
